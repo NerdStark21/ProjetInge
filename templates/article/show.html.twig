@@ -1,0 +1,22 @@
+{%  extends 'base.html.twig' %}
+
+{% block title %}Read {{ title }}{% endblock %}
+
+{% block body %}
+{# Comment #}
+<h1>{{ title }}</h1>
+
+<div>
+    <p>
+        Salut les gens ceci est une balise html.
+    </p>
+</div>
+
+<h2>Comments ({{ comments|length }})</h2>
+
+<ul>
+    {% for comment in comments %}
+        <li>{{ comment }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
