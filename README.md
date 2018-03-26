@@ -15,3 +15,11 @@ Chose à faire pour lancer le projet lors du git clone :
 - ouvrez votre navigateur
 - saisissez l'URL 'localhost:8000/news/tacos'
 - et voilà, vous avez la page web du projet !
+
+Les commandes GitHub :
+- git add .
+- git commit -m 'message'
+- git pull
+- git push
+
+et pour savoir ou vous en êtes utilisez 'git status'
