@@ -23,3 +23,11 @@ Les commandes GitHub :
 - git push
 
 et pour savoir ou vous en êtes utilisez 'git status'
+
+Question pour le dev demain :
+- Est-ce qu'on va devoir gérer des param de sécurité ?
+- Comment on va faire des comptes ?
+- COmment faire des bdd (notre cote ou le votre) pour les utilisateurs ?
+- Est-ce que vous voulez une architecture spécifique pour retravailler dessus ?
+- COmment on fait des graphiques (avec bootstrap) ?
+- Comment on peux modifier facilement les éléments bootstrap ?
