@@ -24,10 +24,13 @@ Les commandes GitHub :
 
 et pour savoir ou vous en êtes utilisez 'git status'
 
-Question pour le dev demain :
+Question pour le dev :
 - Est-ce qu'on va devoir gérer des param de sécurité ?
 - Comment on va faire des comptes ?
 - COmment faire des bdd (notre cote ou le votre) pour les utilisateurs ?
 - Est-ce que vous voulez une architecture spécifique pour retravailler dessus ?
 - COmment on fait des graphiques (avec bootstrap) ?
 - Comment on peux modifier facilement les éléments bootstrap ?
+
+Questions pour Mehdi :
+- Est-ce qu'il veut un site responsive (visible sur mobile ) ?
