@@ -1,10 +1,10 @@
 
 let listMonth = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
-let listEnergy = {"water" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+let listEnergyTest = {"water" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
                   "electricity" : [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
                   "gas" : [25, 26, 27, 28, 32, 30, 31, 32, 33, 34, 35, 36]};
 
-let listCompare = {"water" : [1, 2, 3, 3, 5, 6, 7, 8, 9, 10, 11, 12],
+let listCompareTest = {"water" : [1, 2, 3, 3, 5, 6, 7, 8, 9, 10, 11, 12],
                   "electricity" : [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
                   "gas" : [31, 15, 27, 29, 29, 30, 31, 40, 33, 34, 35, 37]};
 
@@ -18,6 +18,7 @@ for(let k=0; k<12;k++){
 }
 
 function remplir(energy, listEnergy, listCompare, année){
+    console.log("listEnergy = ", listEnergy);
     for(k=0;k<12;k++){
         let clone = $(".".concat(energy)).find(".valueClone").clone();
         clone.removeClass("valueClone");
@@ -36,7 +37,7 @@ function remplir(energy, listEnergy, listCompare, année){
         else{
             clone.addClass("red");
         }
-        clone.text(listEnergy[energy][k]);
+        clone.text(actualEnergy);
         $(".".concat(energy)).append(clone);
     }
     console.log("FIN");
@@ -44,9 +45,9 @@ function remplir(energy, listEnergy, listCompare, année){
 
 let energyType = ["water", "electricity", "gas"];
 for (j=0;j<3;j++){
-    console.log(energyType[j], listEnergy, listCompare);
-    console.log(j);
-    remplir(energyType[j]);
+    //console.log(energyTypeTest[j], listEnergyTest, listCompareTest);
+    console.log("j = ", j);
+    remplir(energyType[j], listEnergyTest, listCompareTest, 2018);
 }
 })
 
