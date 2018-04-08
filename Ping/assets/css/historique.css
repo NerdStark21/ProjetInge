@@ -1,0 +1,13 @@
+.monthClone, .valueClone
+{
+	display: none;
+}
+
+.historique
+{
+	text-align: center;
+}
+
+.red{color: red;}
+.green{color: green;}
+.orange{color: #FF8C00;}
