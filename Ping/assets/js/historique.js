@@ -1,12 +1,27 @@
 
 let listMonth = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
-let listEnergyTest = {"water" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+
+let listEnergyTest2017 = {"water" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
                   "electricity" : [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
                   "gas" : [25, 26, 27, 28, 32, 30, 31, 32, 33, 34, 35, 36]};
-
-let listCompareTest = {"water" : [1, 2, 3, 3, 5, 6, 7, 8, 9, 10, 11, 12],
+let listEnergyTest2018 = {"water" : [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+                  "electricity" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+                  "gas" : [25, 26, 27, 28, 32, 30, 31, 32, 33, 34, 35, 36]};
+let listEnergyTest2019 = {"water" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
                   "electricity" : [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
-                  "gas" : [31, 15, 27, 29, 29, 30, 31, 40, 33, 34, 35, 37]};
+                  "gas" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]};
+
+let listCompareTest2018 = {"water" : [25, 26, 27, 28, 32, 30, 31, 32, 33, 34, 35, 36],
+                  "electricity" : [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+                  "gas" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]};
+
+let listEnergyTest = {  2017 : listEnergyTest2017,
+                        2018 : listEnergyTest2018,
+                        2019 : listEnergyTest2019};
+
+let listCompareTest = { 2017 : listCompareTest2018,
+                        2018 : listCompareTest2018, 
+                        2019 : listCompareTest2018};
 
 $(document).ready(function (){
 // Pour afficher tous les mois dans le tableau
@@ -17,38 +32,53 @@ for(let k=0; k<12;k++){
     $(".ligne_header").append(clone);
 }
 
-function remplir(energy, listEnergy, listCompare, année){
-    console.log("listEnergy = ", listEnergy);
+function remplirLigne(energy, listEnergy, listCompare){
     for(k=0;k<12;k++){
         let clone = $(".".concat(energy)).find(".valueClone").clone();
         clone.removeClass("valueClone");
         let actualEnergy = listEnergy[energy][k];
         let previousEnergy = listCompare[energy][k];
-        console.log("Energy");
-        console.log(actualEnergy);
-        console.log(1.2*actualEnergy);
-        console.log(previousEnergy);
         if(actualEnergy <= 1.05*previousEnergy){
-            clone.addClass("green");
+            clone.addClass("green value");
         }
         else if(actualEnergy <= 1.15*previousEnergy){
-            clone.addClass("orange");
+            clone.addClass("orange value");
         }
         else{
-            clone.addClass("red");
+            clone.addClass("red value");
         }
         clone.text(actualEnergy);
         $(".".concat(energy)).append(clone);
     }
-    console.log("FIN");
 };
 
 let energyType = ["water", "electricity", "gas"];
-for (j=0;j<3;j++){
-    //console.log(energyTypeTest[j], listEnergyTest, listCompareTest);
-    console.log("j = ", j);
-    remplir(energyType[j], listEnergyTest, listCompareTest, 2018);
+let annee = 2018;
+
+function remplirTableau(listEnergy, listCompare){
+    
+    $("#year").text(annee);     // On met la bonne année
+    console.log(listEnergy);
+    for (j=0;j<3;j++){
+        //console.log(energyTypeTest[j], listEnergyTest, listCompareTest);
+        remplirLigne(energyType[j], listEnergy, listCompare);
+    }
 }
+
+function viderTableau(){
+    for (j=0;j<3;j++){
+        $('tr td[class~="value"]').remove();
+    }
+}
+
+remplirTableau(listEnergyTest[annee], listCompareTest[annee]);
+
+$("#nextYear, #previousYear").click(function(event){
+    if(event.target.id == "nextYear"){annee += 1;}
+    else{annee -= 1;}
+    viderTableau();
+    remplirTableau(listEnergyTest[annee], listCompareTest[annee]);
+});
 })
 
 /*

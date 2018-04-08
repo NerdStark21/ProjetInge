@@ -36,26 +36,14 @@
 									</ul>
 								</header>
 
-							<!-- Banner -->
-								<section id="banner">
-									<div class="content">
-										<header>
-											<h1>Hi, I’m Editorial by HTML5 UP</h1>
-											
-										</header>
-										
-										
-									</div>
-									
-								</section>
-
 							<!-- Section -->
 								<section>
 									<header class="major">
-										<h2>Historique de consommation à l'année (2018)</h2>
+										<h2>Historique de consommation à l'année</h2>
 									</header>
 									<div class="historique">
 										<article>
+											<h3><img id="previousYear" src="images/fleche_gauche.png" alt="Fleche" height="15" width="15"><span id="year"></span><img id="nextYear" src="images/fleche_droite.png" alt="Fleche" height="15" width="15"></h3>
 											<table>
     											<thead>
             										<tr class="ligne_header">
@@ -64,11 +52,11 @@
             										</tr>
         										</thead>
         										<tbody>
-        											<tr class="electricity">
+        											<tr class="water">
             											<td class="energyType">Electricité</td>
                 										<td class="valueClone"></td>
            											</tr>
-           											<tr class="water">
+           											<tr class="electricity">
             											<td class="energyType">Eau</td>
                 										<td class="valueClone"></td>
            											</tr>
