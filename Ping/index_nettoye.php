@@ -13,7 +13,6 @@
 	<link rel="stylesheet" href="assets/css/historique.css">
     <!-- JavaScript -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="assets/js/historique.js"></script>
 </head>
 	<body class="">
 
@@ -38,36 +37,23 @@
 
 							<!-- Section -->
 								<section id="body">
-									<header class="major">
-										<h2>Historique de consommation à l'année</h2>
-									</header>
-									<div class="historique">
-										<article>
-											<h3><img id="previousYear" src="images/fleche_gauche.png" alt="Fleche" height="15" width="15"><span id="year"></span><img id="nextYear" src="images/fleche_droite.png" alt="Fleche" height="15" width="15"></h3>
-											<table>
-    											<thead>
-            										<tr class="ligne_header">
-            											<th class="grey h_nom">Type d'énergie<span></span></th>
-                										<th class="monthClone">Mois<span></span></th>
-            										</tr>
-        										</thead>
-        										<tbody>
-        											<tr class="water">
-            											<td class="energyType">Electricité</td>
-                										<td class="valueClone"></td>
-           											</tr>
-           											<tr class="electricity">
-            											<td class="energyType">Eau</td>
-                										<td class="valueClone"></td>
-           											</tr>
-           											<tr class="gas">
-            											<td class="energyType">Gaz</td>
-                										<td class="valueClone"></td>
-           											</tr>
-        										</tbody>
-											</table>
-										</article>
-									</div>
+									<script>
+										$.ajax({
+       										url : "historique.html",
+       										type : 'GET',
+       										dataType : 'html',
+       										success : function(code_html, statut){
+       										     $("#body").empty();
+       										     $(code_html).appendTo("#body"); // On passe code_html à jQuery() qui va nous créer l'arbre DOM !
+       										},
+       										error : function(resultat, statut, erreur){
+       										  
+       										},
+       										complete : function(resultat, statut){
+										
+       										}
+    									});
+									</script>
 								</section>
 
 							<!-- Section -->
@@ -143,5 +129,4 @@
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
 
-	
 </body></html>

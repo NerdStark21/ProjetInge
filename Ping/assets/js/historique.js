@@ -23,13 +23,67 @@ let listCompareTest = { 2017 : listCompareTest2018,
                         2018 : listCompareTest2018, 
                         2019 : listCompareTest2018};
 
+let energyType = ["water", "electricity", "gas"];
+let annee = 2018;
+
 $(document).ready(function (){
+
+console.log("READY");
 // Pour afficher tous les mois dans le tableau
 for(let k=0; k<12;k++){
     let clone = $(".monthClone").clone();
     clone.removeClass("monthClone");
     clone.text(listMonth[k]);
     $(".ligne_header").append(clone);
+}
+
+remplirTableau(listEnergyTest[annee], listCompareTest[annee]);
+
+$("#nextYear, #previousYear").click(function(event){
+    if(event.target.id == "nextYear"){annee += 1;}
+    else{annee -= 1;}
+    viderTableau();
+    remplirTableau(listEnergyTest[annee], listCompareTest[annee]);
+});
+
+$("#historique, #blank").click(function(event){
+    let newPage = (event.target.id == "historique")?"historique.html":"blank.html";
+    actualisation(newPage);
+});
+
+function actualisation(newPage){
+    console.log(newPage);
+    $.ajax({
+       url : newPage,
+       type : 'GET',
+       dataType : 'html',
+       success : function(code_html, statut){
+            $("#body").empty();
+            $(code_html).appendTo("#body"); // On passe code_html à jQuery() qui va nous créer l'arbre DOM !
+       },
+       error : function(resultat, statut, erreur){
+         
+       },
+       complete : function(resultat, statut){
+
+       }
+    });
+}
+
+function remplirTableau(listEnergy, listCompare){
+    
+    $("#year").text(annee);     // On met la bonne année
+    console.log(listEnergy);
+    for (j=0;j<3;j++){
+        //console.log(energyTypeTest[j], listEnergyTest, listCompareTest);
+        remplirLigne(energyType[j], listEnergy, listCompare);
+    }
+}
+
+function viderTableau(){
+    for (j=0;j<3;j++){
+        $('tr td[class~="value"]').remove();
+    }
 }
 
 function remplirLigne(energy, listEnergy, listCompare){
@@ -51,91 +105,4 @@ function remplirLigne(energy, listEnergy, listCompare){
         $(".".concat(energy)).append(clone);
     }
 };
-
-let energyType = ["water", "electricity", "gas"];
-let annee = 2018;
-
-function remplirTableau(listEnergy, listCompare){
-    
-    $("#year").text(annee);     // On met la bonne année
-    console.log(listEnergy);
-    for (j=0;j<3;j++){
-        //console.log(energyTypeTest[j], listEnergyTest, listCompareTest);
-        remplirLigne(energyType[j], listEnergy, listCompare);
-    }
-}
-
-function viderTableau(){
-    for (j=0;j<3;j++){
-        $('tr td[class~="value"]').remove();
-    }
-}
-
-remplirTableau(listEnergyTest[annee], listCompareTest[annee]);
-
-$("#nextYear, #previousYear").click(function(event){
-    if(event.target.id == "nextYear"){annee += 1;}
-    else{annee -= 1;}
-    viderTableau();
-    remplirTableau(listEnergyTest[annee], listCompareTest[annee]);
-});
-
-
-// On reprend le même id que dans le précédent chapitre
-
-$("#historique, #blank").click(function(event){
-    
-    let newPage = (event.target.id == "historique")?"historique.html":"blank.html";
-    $.ajax({
-       url : newPage,
-       type : 'GET',
-       dataType : 'html',
-       success : function(code_html, statut){
-            $("#body").empty();
-            $(code_html).appendTo("#body"); // On passe code_html à jQuery() qui va nous créer l'arbre DOM !
-       },
-
-       error : function(resultat, statut, erreur){
-         
-       },
-
-       complete : function(resultat, statut){
-
-       }
-
-    });
-   
-});
-
-
 })
-
-/*
-//Pour faire le OUVRIR / FERMER du tableau
-function fermer(){
-    $("section").find("th").first().text("OUVRIR");
-    $('tbody').hide();
-}
-
-function ouvert(){
-    $("section").find("th").first().text("FERMER");
-    $('tbody').show();
-}
-
-$("#fermer").click(function(event){
-    if($("section").find("th").first().text() == "FERMER")
-    fermer();
-    else
-    ouvert();
-});
-
-$("input").keypress(function(event){
-    str=$(this).val();
-});
-
-function _changeTheme(color){
-    let ligne_color = $("th");
-    ligne_color.removeClass("grey blue red green");
-    ligne_color.addClass(color);
-};
-*/
