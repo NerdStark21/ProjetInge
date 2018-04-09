@@ -37,7 +37,7 @@
 								</header>
 
 							<!-- Section -->
-								<section>
+								<section id="body">
 									<header class="major">
 										<h2>Historique de consommation à l'année</h2>
 									</header>
@@ -93,9 +93,9 @@
 										<h2>Menu</h2>
 									</header>
 									<ul>
-										<li><a href="index.html">Homepage</a></li>
-										<li><a href="generic.html">Generic</a></li>
-										<li><a href="elements.html">Elements</a></li>
+										<li><a id="historique">Historique</a></li>
+										<li><a id="blank">Blank</a></li>
+										<li><a id="WIP">WIP</a></li>
 										<li>
 											<span class="opener">Submenu</span>
 											<ul>

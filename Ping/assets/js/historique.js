@@ -79,6 +79,35 @@ $("#nextYear, #previousYear").click(function(event){
     viderTableau();
     remplirTableau(listEnergyTest[annee], listCompareTest[annee]);
 });
+
+
+// On reprend le même id que dans le précédent chapitre
+
+$("#historique, #blank").click(function(event){
+    
+    let newPage = (event.target.id == "historique")?"historique.html":"blank.html";
+    $.ajax({
+       url : newPage,
+       type : 'GET',
+       dataType : 'html',
+       success : function(code_html, statut){
+            $("#body").empty();
+            $(code_html).appendTo("#body"); // On passe code_html à jQuery() qui va nous créer l'arbre DOM !
+       },
+
+       error : function(resultat, statut, erreur){
+         
+       },
+
+       complete : function(resultat, statut){
+
+       }
+
+    });
+   
+});
+
+
 })
 
 /*
