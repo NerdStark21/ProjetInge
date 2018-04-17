@@ -1,3 +1,22 @@
+
+<?php
+/* Displays user information and some useful messages */
+session_start();
+
+// Check if user is logged in using the session variable
+if ( $_SESSION['logged_in'] != 1 ) {
+  $_SESSION['message'] = "You must log in before viewing your profile page!";
+  header("location: error.php");    
+}
+else {
+    // Makes it easier to read
+    $first_name = $_SESSION['first_name'];
+    $last_name = $_SESSION['last_name'];
+    $email = $_SESSION['email'];
+    $active = $_SESSION['active'];
+}
+?>
+
 <!DOCTYPE html>
 <!--
 	Editorial by HTML5 UP
@@ -78,8 +97,10 @@
 									<header class="major">
 										<h2>Menu</h2>
 									</header>
+									<u1><a id="userConnected"><?php echo "Connecté sous : $last_name "?></a></u1>
 									<ul>
 										<li><a id="historique">Historique</a></li>
+										
 										<li><a id="blank">Blank</a></li>
 										<li><a id="WIP">WIP</a></li>
 										<li>
