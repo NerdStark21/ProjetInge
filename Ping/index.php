@@ -1,6 +1,6 @@
 <?php 
 /* Main page with two forms: sign up and log in */
-require 'db.php';
+require 'logInSystem/db.php';
 session_start();
 ?>
 <!DOCTYPE html>
@@ -15,13 +15,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     if (isset($_POST['login'])) { //user logging in
 
-        require 'login.php';
+        require 'logInSystem/login.php';
         
     }
     
     elseif (isset($_POST['register'])) { //user registering
         
-        require 'register.php';
+        require 'logInSystem/register.php';
         
     }
 }
@@ -46,14 +46,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             <label>
               Email Address<span class="req">*</span>
             </label>
-            <input type="email" required autocomplete="off" name="email"/>
+            <input type="email" required value="user@saint-etienne.fr" name="email"/>
           </div>
           
           <div class="field-wrap">
             <label>
               Password<span class="req">*</span>
             </label>
-            <input type="password" required autocomplete="off" name="password"/>
+            <input type="password" required value="123456" name="password"/>
+            <!-- autocomplete off -->
           </div>
           
           <p class="forgot"><a href="forgot.php">Forgot Password?</a></p>

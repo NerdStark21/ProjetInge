@@ -11,3 +11,5 @@ Les commandes GitHub :
 - git push
 
 et pour savoir ou vous en êtes utilisez 'git status'
+
+SVP ne mettez pas d'espaces dans les noms de dossier et de fichier

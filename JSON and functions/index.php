@@ -142,9 +142,4 @@ echo "Consommation Moyenne Elec : ",getConsommationElec(19800723488459,'01/01/20
 echo "<br>";
 echo " Consommation Moyenne Elec log similaires :",getConsommationElecm(19800723488459,'01/01/2016');
 
-
-
-
-   
-
 ?>
