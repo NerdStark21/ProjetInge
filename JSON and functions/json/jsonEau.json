@@ -1,0 +1,498 @@
+[
+  {
+    "tags": [
+      "enedis_consumption"
+    ],
+    "id": 19800723488459,
+    "zipcode": 42000,
+    "temporalClass": "HP",
+    "physicalSize": "EA",
+    "address": " 12 PCE DE LA REPUBLIQUE",
+    "location": "AGENCE POSTALE COTE CHAUDE",
+    "unity": "m3",
+    "type": "Fournisseur",
+    "city": "ST ETIENNE",
+    "averageElectricity" : "672.25",
+    "area" : "71",
+    "physicalSize": "EA",
+    "email" : "user1@gmail.com",
+    "dates" : [
+
+      {
+        "start": "01/01/2016",
+        "end": "01/02/2016",
+        "value": 154,
+        "moyenneHabSimilaire" : 870
+      },
+      {
+        "start": "01/02/2016",
+        "end": "01/03/2016",
+        "value": 162,
+        "moyenneHabSimilaire" : 712
+      },
+      {
+        "start": "01/03/2016",
+        "end": "01/04/2016",
+        "value": 144,
+        "moyenneHabSimilaire" : 500
+      },
+      {
+        "start": "01/04/2016",
+        "end": "01/05/2016",
+        "value": 123,
+        "moyenneHabSimilaire" : 632
+      },
+      {
+        "start": "01/05/2016",
+        "end": "01/06/2016",
+        "value": 178,
+        "moyenneHabSimilaire" : 450
+      },
+      {
+        "start": "01/06/2016",
+        "end": "01/07/2016",
+        "value": 187,
+        "moyenneHabSimilaire" : 490
+      },
+      {
+        "start": "01/07/2016",
+        "end": "01/08/2016",
+        "value": 197,
+        "moyenneHabSimilaire" : 410
+      },
+      {
+        "start": "01/08/2016",
+        "end": "01/09/2016",
+        "value": 154,
+        "moyenneHabSimilaire" : 160
+      },
+      {
+        "start": "01/09/2016",
+        "end": "01/10/2016",
+        "value": 143,
+        "moyenneHabSimilaire" : 140
+      },
+      {
+        "start": "01/10/2016",
+        "end": "01/11/2018",
+        "value": 142,
+        "moyenneHabSimilaire" : 140
+      },
+      {
+        "start": "01/11/2016",
+        "end": "01/12/2016",
+        "value": 144,
+        "moyenneHabSimilaire" : 145
+      },
+      {
+        "start": "01/12/2016",
+        "end": "01/01/2017",
+        "value": 154,
+        "moyenneHabSimilaire" : 150
+      },
+      {
+        "start": "01/01/2017",
+        "end": "01/02/2017",
+        "value": 146,
+        "moyenneHabSimilaire" : 201
+      },
+      {
+        "start": "01/02/2017",
+        "end": "01/03/2017",
+        "value": 168,
+        "moyenneHabSimilaire" : 170
+      },
+      {
+        "start": "01/03/2017",
+        "end": "01/04/2017",
+        "value": 172,
+        "moyenneHabSimilaire" : 180
+      },
+      {
+        "start": "01/04/2017",
+        "end": "01/05/2017",
+        "value": 168,
+        "moyenneHabSimilaire" : 182
+      },
+      {
+        "start": "01/05/2017",
+        "end": "01/06/2017",
+        "value": 149,
+        "moyenneHabSimilaire" : 152
+      },
+      {
+        "start": "01/06/2017",
+        "end": "01/07/2017",
+        "value": 142,
+        "moyenneHabSimilaire" : 159
+      },
+      {
+        "start": "01/07/2017",
+        "end": "01/08/2017",
+        "value": 159,
+        "moyenneHabSimilaire" : 154
+      },
+      {
+        "start": "01/08/2017",
+        "end": "01/09/2017",
+        "value": 162,
+        "moyenneHabSimilaire" : 160
+      },
+      {
+        "start": "01/09/2017",
+        "end": "01/10/2017",
+        "value": 201,
+        "moyenneHabSimilaire" : 201
+      },
+      {
+        "start": "01/10/2017",
+        "end": "01/11/2017",
+        "value": 204,
+        "moyenneHabSimilaire" : 205
+      },
+      {
+        "start": "01/11/2017",
+        "end": "01/12/2017",
+        "value": 187,
+        "moyenneHabSimilaire" : 189
+      },
+      {
+        "start": "01/12/2017",
+        "end": "01/01/2017",
+        "value": 165,
+        "moyenneHabSimilaire" : 170
+      }
+   ]
+  
+  },
+  {
+    "tags": [
+      "enedis_public_consumption"
+    ],
+    "zipcode": 42100,
+    "temporalClass": "BASE",
+    "id": 19816931954957,
+    "physicalSize": "EA",
+    "address": " 90 RUE GABRIEL PERI",
+    "location": "ANNEXE MEDIATHEQUE DE SOLAURE",
+    "unity": "m3",
+    "type": "Fournisseur",
+    "averageElectricity" : "625",
+    "area" : "81",
+    "physicalSize": "EA",
+    "email" : "user2@gmail.com",
+    "city" : "ST ETIENNE",
+    "dates": [
+      {
+        "start": "01/01/2016",
+        "end": "01/02/2016",
+        "value": 155,
+        "moyenneHabSimilaire" : 160
+      },
+      {
+        "start": "01/02/2016",
+        "end": "01/03/2016",
+        "value": 156,
+        "moyenneHabSimilaire" : 162
+      },
+      {
+        "start": "01/03/2016",
+        "end": "01/04/2016",
+        "value": 145,
+        "moyenneHabSimilaire" : 172
+      },
+      {
+        "start": "01/04/2016",
+        "end": "01/05/2016",
+        "value": 148,
+        "moyenneHabSimilaire" : 149
+      },
+      {
+        "start": "01/05/2016",
+        "end": "01/06/2016",
+        "value": 159,
+        "moyenneHabSimilaire" : 201
+      },
+      {
+        "start": "01/06/2016",
+        "end": "01/07/2016",
+        "value": 157,
+        "moyenneHabSimilaire" : 151
+      },
+      {
+        "start": "01/07/2016",
+        "end": "01/08/2016",
+        "value": 156,
+        "moyenneHabSimilaire" : 153
+      },
+      {
+        "start": "01/08/2016",
+        "end": "01/09/2016",
+        "value": 125,
+        "moyenneHabSimilaire" : 122
+      },
+      {
+        "start": "01/09/2016",
+        "end": "01/10/2016",
+        "value": 159,
+        "moyenneHabSimilaire" : 162
+      },
+      {
+        "start": "01/10/2016",
+        "end": "01/11/20186",
+        "value": 181,
+        "moyenneHabSimilaire" : 180
+      },
+      {
+        "start": "01/11/2016",
+        "end": "01/12/2016",
+        "value": 183,
+        "moyenneHabSimilaire" : 201
+      },
+      {
+        "start": "01/12/2016",
+        "end": "01/01/2017",
+        "value": 189,
+        "moyenneHabSimilaire" : 203
+      },
+      {
+        "start": "01/01/2017",
+        "end": "01/02/2017",
+        "value": 203,
+        "moyenneHabSimilaire" : 190
+      },
+      {
+        "start": "01/02/2017",
+        "end": "01/03/2017",
+        "value": 201,
+        "moyenneHabSimilaire" : 187
+      },
+      {
+        "start": "01/03/2017",
+        "end": "01/04/2017",
+        "value": 173,
+        "moyenneHabSimilaire" : 202
+      },
+      {
+        "start": "01/04/2017",
+        "end": "01/05/2017",
+        "value": 179,
+        "moyenneHabSimilaire" : 190
+      },
+      {
+        "start": "01/05/2017",
+        "end": "01/06/2017",
+        "value": 168,
+        "moyenneHabSimilaire" : 193
+      },
+      {
+        "start": "01/06/2017",
+        "end": "01/07/2017",
+        "value": 166,
+        "moyenneHabSimilaire" : 187
+      },
+      {
+        "start": "01/07/2017",
+        "end": "01/08/2017",
+        "value": 177,
+        "moyenneHabSimilaire" : 205
+      },
+      {
+        "start": "01/08/2017",
+        "end": "01/09/2017",
+        "value": 201,
+        "moyenneHabSimilaire" : 201
+      },
+      {
+        "start": "01/09/2017",
+        "end": "01/10/2017",
+        "value": 177,
+        "moyenneHabSimilaire" : 209
+      },
+      {
+        "start": "01/10/2017",
+        "end": "01/11/2017",
+        "value": 173,
+        "moyenneHabSimilaire" : 190
+      },
+      {
+        "start": "01/11/2017",
+        "end": "01/12/2017",
+        "value": 175,
+        "moyenneHabSimilaire" : 189
+      },
+      {
+        "start": "01/12/2017",
+        "end": "01/01/2018",
+        "value": 189,
+        "moyenneHabSimilaire" : 185
+      }
+   ]
+
+  },
+   {
+   "tags": [
+      "enedis_public_consumption"
+    ],
+    "zipcode": 42000,
+    "temporalClass": "BASE",
+    "id": 19800434434634,
+    "physicalSize": "EA",
+    "address": " 38 rue POLIGNAIS",
+    "location": "ANNEXE MQ BABET TARENTAISE",
+    "calendar": "FC000018",
+    "unity": "m3",
+    "type": "Fournisseur",
+    "averageElectricity" : "625",
+    "area" : "77",
+    "physicalSize": "EA",
+    "email" : "user3@gmail.com",
+    "city" : "ST ETIENNE",
+    "dates": [
+      {
+        "start": "01/01/2016",
+        "end": "01/02/2016",
+        "value": 167,
+        "moyenneHabSimilaire" : 202
+      },
+      {
+        "start": "01/02/2016",
+        "end": "01/03/2016",
+        "value": 162,
+        "moyenneHabSimilaire" : 152
+      },
+      {
+        "start": "01/03/2016",
+        "end": "01/04/2016",
+        "value": 161,
+        "moyenneHabSimilaire" : 187
+      },
+      {
+        "start": "01/04/2016",
+        "end": "01/05/2016",
+        "value": 158,
+        "moyenneHabSimilaire" : 177
+      },
+      {
+        "start": "01/05/2016",
+        "end": "01/06/2016",
+        "value": 144,
+        "moyenneHabSimilaire" : 182
+      },
+      {
+        "start": "01/06/2016",
+        "end": "01/07/2016",
+        "value": 159,
+        "moyenneHabSimilaire" : 189
+      },
+      {
+        "start": "01/07/2016",
+        "end": "01/08/2016",
+        "value": 160,
+        "moyenneHabSimilaire" : 182
+      },
+      {
+        "start": "01/08/2016",
+        "end": "01/09/2016",
+        "value": 166,
+        "moyenneHabSimilaire" : 183
+      },
+      {
+        "start": "01/09/2016",
+        "end": "01/10/2016",
+        "value": 167,
+        "moyenneHabSimilaire" : 187
+      },
+      {
+        "start": "01/10/2016",
+        "end": "01/11/20186",
+        "value": 168,
+        "moyenneHabSimilaire" : 201
+      },
+      {
+        "start": "01/11/2016",
+        "end": "01/12/2016",
+        "value": 169,
+        "moyenneHabSimilaire" : 158
+      },
+      {
+        "start": "01/12/2016",
+        "end": "01/01/2017",
+        "value": 186,
+        "moyenneHabSimilaire" : 186
+      },
+      {
+        "start": "01/01/2017",
+        "end": "01/02/2017",
+        "value": 187,
+        "moyenneHabSimilaire" : 189
+      },
+      {
+        "start": "01/02/2017",
+        "end": "01/03/2017",
+        "value": 198,
+        "moyenneHabSimilaire" : 201
+      },
+      {
+        "start": "01/03/2017",
+        "end": "01/04/2017",
+        "value": 197,
+        "moyenneHabSimilaire" : 201
+      },
+      {
+        "start": "01/04/2017",
+        "end": "01/05/2017",
+        "value": 147,
+        "moyenneHabSimilaire" : 132
+      },
+      {
+        "start": "01/05/2017",
+        "end": "01/06/2017",
+        "value": 166,
+        "moyenneHabSimilaire" : 208
+      },
+      {
+        "start": "01/06/2017",
+        "end": "01/07/2017",
+        "value": 134,
+        "moyenneHabSimilaire" : 139
+      },
+      {
+        "start": "01/07/2017",
+        "end": "01/08/2017",
+        "value": 211,
+        "moyenneHabSimilaire" : 205
+      },
+      {
+        "start": "01/08/2017",
+        "end": "01/09/2017",
+        "value": 201,
+        "moyenneHabSimilaire" : 206
+      },
+      {
+        "start": "01/09/2017",
+        "end": "01/10/2017",
+        "value": 187,
+        "moyenneHabSimilaire" : 223
+      },
+      {
+        "start": "01/10/2017",
+        "end": "01/11/2017",
+        "value": 177,
+        "moyenneHabSimilaire" : 201
+      },
+      {
+        "start": "01/11/2017",
+        "end": "01/12/2017",
+        "value": 166,
+        "moyenneHabSimilaire" : 205
+      },
+      {
+        "start": "01/12/2017",
+        "end": "01/01/2018",
+        "value": 154,
+        "moyenneHabSimilaire" : 159
+      }
+   ],
+  }
+]
