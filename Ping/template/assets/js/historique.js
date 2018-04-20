@@ -1,4 +1,6 @@
 
+////// Affichage et gestion du tableau /////////////////
+
 let listMonth = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 
 let listEnergyTest2017 = {"water" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
@@ -34,6 +36,7 @@ for(let k=0; k<12;k++){
     let clone = $(".monthClone").clone();
     clone.removeClass("monthClone");
     clone.text(listMonth[k]);
+    //clone.css("text-align: center;")
     $(".ligne_header").append(clone);
 }
 
@@ -106,3 +109,18 @@ function remplirLigne(energy, listEnergy, listCompare){
     }
 };
 })
+
+//////// Affichage et gestion des flags ///////////////////
+
+let listFlag2018 = {"energy": ["water", "electricity"],
+                    "date": ["01/01/2018", "01/03/2018"],
+                    "action": ["changer radiateur", "manger le chat"]};
+
+function afficherFlag(){
+    let clone = $(".flagClone").clone();
+    clone.removeClass("flagClone");
+    clone.find("p").text(listFlag2018["action"][0]);
+    $("#flags").append(clone);
+}
+
+afficherFlag();

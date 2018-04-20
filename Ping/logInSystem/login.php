@@ -22,7 +22,7 @@ else { // User exists
         // This is how we'll know the user is logged in
         $_SESSION['logged_in'] = true;
 
-        header("location: template/index_nettoye.php");
+        header("location: template/index.php");
     }
     else {
         $_SESSION['message'] = "You have entered wrong x, try again!";

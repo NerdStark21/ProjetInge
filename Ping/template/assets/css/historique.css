@@ -1,11 +1,21 @@
-.monthClone, .valueClone
+.monthClone, .valueClone, .flagClone
 {
 	display: none;
 }
 
-.historique
+table, h3
 {
 	text-align: center;
+}
+
+table
+{
+	width: 100%;
+}
+
+td, th
+{
+	width: 7.69%;
 }
 
 .red{color: red;}
@@ -15,4 +25,16 @@
 span#year
 {
 	margin : 30px;
+}
+
+img.flag
+{
+	margin-left: 11%;
+}
+
+p.msg
+{
+	width: 7.69%;
+	margin-left: 7.69%;
+	text-align: center;
 }
