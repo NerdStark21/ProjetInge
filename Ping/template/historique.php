@@ -34,4 +34,10 @@
         </div>
 	</article>
 </div>
-<script src="assets/js/historique.js"></script>
+<div class="comparaison">
+	<?php include "assets/js/comparaison.php";?>
+	<div id="area1"></div>
+	<div id="area2"></div>
+</div>
+
+<script type="text/javascript" src="assets/js/historique.js"></script>

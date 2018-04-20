@@ -51,7 +51,7 @@ else {
 								<section id="body">
 									<script>
 										$.ajax({
-       										url : "historique.html",
+       										url : "historique.php",
        										type : 'GET',
        										dataType : 'html',
        										success : function(code_html, statut){
