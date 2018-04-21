@@ -3,6 +3,13 @@
 </header>
 <div class="historique">
 	<article>
+		<div id="legende">
+			<h5>Légende</h5>
+			<p>Comparaison mois par mois par rapport aux habitations de même type :</p>
+			<img src="images/button-red.png" height="15" width="15">Supérieure de 15%<br/>
+			<img src="images/button-orange.png" height="15" width="15">Supérieure de 5 à 15%<br/>
+			<img src="images/button-green.png" height="15" width="15">Inférieure ou égale (à 5% près)
+		</div>
 		<h3><img id="previousYear" src="images/fleche_gauche.png" alt="Fleche" height="15" width="15"><span id="year"></span><img id="nextYear" src="images/fleche_droite.png" alt="Fleche" height="15" width="15"></h3>
 		<table>
 			<thead>
@@ -28,16 +35,16 @@
 		</table>
         <div id="flags">
             <div class="flagClone">
-                <img class="flag" src="images/fleche_haut_rouge.ico" alt="Fleche rouge" height="50" width="30">
-                <p class="msg">coucou</p>
+                <img src="images/fleche_haut_rouge.ico" alt="Fleche rouge" height="50" width="30">
+                <p>coucou</p>
             </div>
         </div>
 	</article>
 </div>
-<div class="comparaison">
+<article class="comparaison">
 	<?php include "assets/js/comparaison.php";?>
 	<div id="area1"></div>
 	<div id="area2"></div>
-</div>
+</article>
 
 <script type="text/javascript" src="assets/js/historique.js"></script>

@@ -112,15 +112,33 @@ function remplirLigne(energy, listEnergy, listCompare){
 
 //////// Affichage et gestion des flags ///////////////////
 
+// C'est les dates anglo-saxones Mois/Jour/Année
 let listFlag2018 = {"energy": ["water", "electricity"],
-                    "date": ["01/01/2018", "01/03/2018"],
-                    "action": ["changer radiateur", "manger le chat"]};
-
+                    "date": ["01/01/2018", "02/01/2018"],
+                    "action": [["changer radiateur"], ["manger le chat", "manger le chien"]]};
 function afficherFlag(){
+  for(k=0; k<listFlag2018["date"].length;k++){
     let clone = $(".flagClone").clone();
     clone.removeClass("flagClone");
-    clone.find("p").text(listFlag2018["action"][0]);
+    clone.addClass("msg".concat(k));
+    clone.addClass("flag");
+    var date = new Date(listFlag2018["date"][k]);
+    if(k>0){
+      var previousdate = new Date(listFlag2018["date"][k-1]);
+      console.log(date.getMonth());
+      console.log(previousdate.getMonth());
+      clone.css('margin-left', ''.concat((date.getMonth()-previousdate.getMonth()-1)*7.69).concat('%'));
+    }
+    else{
+      clone.css('margin-left', ''.concat((date.getMonth()+1)*7.69).concat('%'));
+    }
+    var txt = "";
+    for(j=0;j<listFlag2018["action"][k].length;j++){
+      txt = txt.concat(listFlag2018["action"][k][j]).concat("<br/>");
+    }
+    clone.find("p").html(txt);
     $("#flags").append(clone);
+  }
 }
 
 afficherFlag();

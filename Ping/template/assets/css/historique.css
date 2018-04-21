@@ -18,23 +18,43 @@ td, th
 	width: 7.69%;
 }
 
-.red{color: red;}
-.green{color: green;}
-.orange{color: #FF8C00;}
+.red
+{color: red;}
+.green
+{color: green;}
+.orange
+{color: #FF8C00;}
 
 span#year
 {
 	margin : 30px;
 }
 
-img.flag
-{
-	margin-left: 11%;
+.flag{
+	width: 7.69%;
+	text-align: center;
+	height: 100px;
 }
 
-p.msg
+div#flags
+{display: flex;}
+
+#historique
+{height: 70%;}
+
+div#legende
 {
-	width: 7.69%;
-	margin-left: 7.69%;
-	text-align: center;
+	margin-bottom: 30px;
+	width: 60%;
+	border-left: 3px black double;
+	border-radius: 5px;
 }
+
+div#legende img
+{margin-right: 5px; margin-left: 5px;}
+
+div#legende p
+{margin-bottom: 3px; margin-left: 5px;}
+
+div#legende h5
+{text-decoration: underline; margin-left: 5px;}
