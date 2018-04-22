@@ -1,22 +1,55 @@
+/* La légende */
+
+section#legende
+{
+	margin-bottom: 30px;
+	width: 60%;
+	border-left: 3px black double;
+	border-radius: 5px;
+}
+
+section#legende img
+{margin-right: 5px; margin-left: 5px;}
+
+section#legende p
+{margin-bottom: 3px; margin-left: 5px;}
+
+section#legende h5
+{
+	text-decoration: underline;
+	margin-left: 5px;
+	font-size: 1.3em;
+}
+
+section#legende p, section#legende span
+{font-size: 1em;}
+
+/* L'en-tête du tableau */
+
+aside#form span.button
+{margin-bottom: 20px;}
+
+aside#form div#ajoutflag
+{float: right; text-align: right;}
+
+div.clear
+{clear: both;}
+
+/* Le tableau de l'historique */
+
 .monthClone, .valueClone, .flagClone
 {
 	display: none;
 }
 
 table, h3
-{
-	text-align: center;
-}
+{text-align: center;}
 
 table
-{
-	width: 100%;
-}
+{width: 100%;}
 
 td, th
-{
-	width: 7.69%;
-}
+{width: 7.69%;}
 
 .red
 {color: red;}
@@ -26,35 +59,17 @@ td, th
 {color: #FF8C00;}
 
 span#year
-{
-	margin : 30px;
-}
+{margin : 30px;}
 
 .flag{
 	width: 7.69%;
 	text-align: center;
-	height: 100px;
 }
 
 div#flags
 {display: flex;}
 
-#historique
-{height: 70%;}
+aside#form
+{float: right; text-align: left; width: 40%;}
 
-div#legende
-{
-	margin-bottom: 30px;
-	width: 60%;
-	border-left: 3px black double;
-	border-radius: 5px;
-}
 
-div#legende img
-{margin-right: 5px; margin-left: 5px;}
-
-div#legende p
-{margin-bottom: 3px; margin-left: 5px;}
-
-div#legende h5
-{text-decoration: underline; margin-left: 5px;}

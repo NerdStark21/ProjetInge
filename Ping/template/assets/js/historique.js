@@ -1,5 +1,34 @@
+// ############################################# //
+// ############## Changement de page ########### //
+// ############################################# //
 
-////// Affichage et gestion du tableau /////////////////
+$("#page_historique, #page_blank").click(function(event){
+    let newPage = (event.target.id == "historique")?"historique.php":"blank.html";
+    actualisation(newPage);
+});
+
+function actualisation(newPage){
+  console.log(newPage);
+  $.ajax({
+     url : newPage,
+     type : 'GET',
+     dataType : 'html',
+     success : function(code_html, statut){
+          $("#body").empty();
+          $(code_html).appendTo("#body"); // On passe code_html à jQuery() qui va nous créer l'arbre DOM !
+     },
+     error : function(resultat, statut, erreur){
+       
+     },
+     complete : function(resultat, statut){
+
+     }
+  });
+}
+
+// ################################################## //
+// ########## Affichage et gestion du tableau ####### //
+// ################################################## //
 
 let listMonth = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 
@@ -29,93 +58,69 @@ let energyType = ["water", "electricity", "gas"];
 let annee = 2018;
 
 $(document).ready(function (){
+  console.log("READY");
+  // Pour afficher tous les mois dans le tableau
+  for(let k=0; k<12;k++){
+      let clone = $(".monthClone").clone();
+      clone.removeClass("monthClone");
+      clone.text(listMonth[k]);
+      //clone.css("text-align: center;")
+      $(".ligne_header").append(clone);
+  }
 
-console.log("READY");
-// Pour afficher tous les mois dans le tableau
-for(let k=0; k<12;k++){
-    let clone = $(".monthClone").clone();
-    clone.removeClass("monthClone");
-    clone.text(listMonth[k]);
-    //clone.css("text-align: center;")
-    $(".ligne_header").append(clone);
-}
+  $("#nextYear, #previousYear").click(function(event){
+      if(event.target.id == "nextYear"){annee += 1;}
+      else{annee -= 1;}
+      viderTableau();
+      remplirTableau(listEnergyTest[annee], listCompareTest[annee]);
+  });
 
-remplirTableau(listEnergyTest[annee], listCompareTest[annee]);
+  function remplirTableau(listEnergy, listCompare){
+      $("#year").text(annee);     // On met la bonne année
+      console.log(listEnergy);
+      for (j=0;j<3;j++){
+          //console.log(energyTypeTest[j], listEnergyTest, listCompareTest);
+          remplirLigne(energyType[j], listEnergy, listCompare);
+      }
+  }
 
-$("#nextYear, #previousYear").click(function(event){
-    if(event.target.id == "nextYear"){annee += 1;}
-    else{annee -= 1;}
-    viderTableau();
-    remplirTableau(listEnergyTest[annee], listCompareTest[annee]);
+  function viderTableau(){
+    // Tous les td qui contiennent au moins la classe "value"
+    $('tr td[class~="value"]').remove();
+  }
+
+  function remplirLigne(energy, listEnergy, listCompare){
+      for(k=0;k<12;k++){
+          let clone = $(".".concat(energy)).find(".valueClone").clone();
+          clone.removeClass("valueClone");
+          let actualEnergy = listEnergy[energy][k];
+          let previousEnergy = listCompare[energy][k];
+          if(actualEnergy <= 1.05*previousEnergy){
+              clone.addClass("green value");
+          }
+          else if(actualEnergy <= 1.15*previousEnergy){
+              clone.addClass("orange value");
+          }
+          else{
+              clone.addClass("red value");
+          }
+          clone.text(actualEnergy);
+          $(".".concat(energy)).append(clone);
+      }
+  };
+
+  remplirTableau(listEnergyTest[annee], listCompareTest[annee]);
 });
 
-$("#historique, #blank").click(function(event){
-    let newPage = (event.target.id == "historique")?"historique.html":"blank.html";
-    actualisation(newPage);
-});
-
-function actualisation(newPage){
-    console.log(newPage);
-    $.ajax({
-       url : newPage,
-       type : 'GET',
-       dataType : 'html',
-       success : function(code_html, statut){
-            $("#body").empty();
-            $(code_html).appendTo("#body"); // On passe code_html à jQuery() qui va nous créer l'arbre DOM !
-       },
-       error : function(resultat, statut, erreur){
-         
-       },
-       complete : function(resultat, statut){
-
-       }
-    });
-}
-
-function remplirTableau(listEnergy, listCompare){
-    
-    $("#year").text(annee);     // On met la bonne année
-    console.log(listEnergy);
-    for (j=0;j<3;j++){
-        //console.log(energyTypeTest[j], listEnergyTest, listCompareTest);
-        remplirLigne(energyType[j], listEnergy, listCompare);
-    }
-}
-
-function viderTableau(){
-    for (j=0;j<3;j++){
-        $('tr td[class~="value"]').remove();
-    }
-}
-
-function remplirLigne(energy, listEnergy, listCompare){
-    for(k=0;k<12;k++){
-        let clone = $(".".concat(energy)).find(".valueClone").clone();
-        clone.removeClass("valueClone");
-        let actualEnergy = listEnergy[energy][k];
-        let previousEnergy = listCompare[energy][k];
-        if(actualEnergy <= 1.05*previousEnergy){
-            clone.addClass("green value");
-        }
-        else if(actualEnergy <= 1.15*previousEnergy){
-            clone.addClass("orange value");
-        }
-        else{
-            clone.addClass("red value");
-        }
-        clone.text(actualEnergy);
-        $(".".concat(energy)).append(clone);
-    }
-};
-})
-
-//////// Affichage et gestion des flags ///////////////////
+// ############################################### //
+// ########### Affichage des marqueurs ########### //
+// ############################################### //
 
 // C'est les dates anglo-saxones Mois/Jour/Année
 let listFlag2018 = {"energy": ["water", "electricity"],
                     "date": ["01/01/2018", "02/01/2018"],
                     "action": [["changer radiateur"], ["manger le chat", "manger le chien"]]};
+
 function afficherFlag(){
   for(k=0; k<listFlag2018["date"].length;k++){
     let clone = $(".flagClone").clone();
@@ -142,3 +147,36 @@ function afficherFlag(){
 }
 
 afficherFlag();
+
+// ############################################### //
+// ########### Gestion du formulaire ############# //
+// ############################################### //
+
+// Pour ouvrir le formulaire d'ajout de marqueur
+$("#ajoutflag").on("click", ".ajout", function ouvrir(){
+  $("#form_ajax").load("addflag.php");
+  var button1 = $("#form").find(".button").clone();
+  button1.removeClass("ajout");
+  var button2 = button1.clone();
+  button1.addClass("confirm");
+  button1.text("Ajouter");
+  button2.addClass("annuler");
+  button2.text("Annuler");
+  $("#form").find("#ajoutflag").append(button1);
+  $("#form").find("#ajoutflag").append(button2);
+  $("#form").find("#ajoutflag").find(".ajout").remove();
+});
+
+// Pour ouvrir le formulaire d'ajout de marqueur (annulation)
+$("#ajoutflag").on("click", ".annuler", function fermer(){
+  $("#form_ajax").find("form").remove();
+  var button = $("#form").find(".annuler").clone();
+  button.removeClass("annuler");
+  button.addClass("ajout");
+  button.text("Ajout d'un marqueur");
+  $("#ajoutflag").append(button);
+  $("#ajoutflag").find(".annuler").remove();
+  $("#ajoutflag").find(".confirm").remove();
+});
+
+// Pour ouvrir le formulaire d'ajout de marqueur (ajout)

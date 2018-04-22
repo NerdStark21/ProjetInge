@@ -6,7 +6,7 @@ session_start();
 // Check if user is logged in using the session variable
 if ( $_SESSION['logged_in'] != 1 ) {
   $_SESSION['message'] = "You must log in before viewing your profile page!";
-  header("location: error.php");    
+  header("location: error.php");
 }
 else {
     // Makes it easier to read
@@ -24,12 +24,13 @@ else {
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html><head>
-	<title>Editorial by HTML5 UP</title>
+	<title>Projet ingé</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<!-- CSS -->
 	<link rel="stylesheet" href="assets/css/main.css">
 	<link rel="stylesheet" href="assets/css/historique.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/addflag.css">
     <!-- JavaScript -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
@@ -92,9 +93,9 @@ else {
 									</header>
 									<u1><a id="userConnected"><?php echo "Connecté sous : $last_name "?></a></u1>
 									<ul>
-										<li><a id="historique">Historique</a></li>
+										<li><a id="page_historique">Historique</a></li>
 										
-										<li><a id="blank">Blank</a></li>
+										<li><a id="page_blank">Blank</a></li>
 										<li><a id="WIP">WIP</a></li>
 										<li>
 											<span class="opener">Submenu</span>
