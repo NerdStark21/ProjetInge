@@ -95,10 +95,16 @@ $(document).ready(function (){
   Permet le changement d'année dans le tableau
   */
   $("#nextYear, #previousYear").click(function(event){
-      if(event.target.id == "nextYear"){annee += 1;}
-      else{annee -= 1;}
+    if(event.target.id == "nextYear" && annee + 1 <= lastYear){
+      annee += 1;
       viderTableau();
       remplirTableau(listConso[annee], listConsoCompare[annee]);
+    }
+    else if(event.target.id == "previousYear"){
+      annee -= 1;
+      viderTableau();
+      remplirTableau(listConso[annee], listConsoCompare[annee]);
+    }
   });
 
   /*
@@ -155,6 +161,8 @@ $(document).ready(function (){
   function viderTableau(){
     // Tous les td qui contiennent au moins la classe "value"
     $('tr td[class~="value"]').remove();
+    $('tr td[class~="empty"]').remove();
+    let txt = $("article#historique").find("tbody").find("img").remove();
   }
 
   /*
