@@ -31,8 +31,8 @@ else {
 	<link rel="stylesheet" href="assets/css/main.css">
 	<link rel="stylesheet" href="assets/css/historique.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/addflag.css">
-    <!-- JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <!-- JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 	<body class="">
 
@@ -44,34 +44,30 @@ else {
 						<div class="inner">
 
 							<!-- Header -->
-								<header id="header">
+							<header id="header">
 
-								</header>
-
-							<!-- Section -->
-								<section id="body">
-									<script>
-										$.ajax({
-       										url : "historique.php",
-       										type : 'GET',
-       										dataType : 'html',
-       										success : function(code_html, statut){
-       										     $("#body").empty();
-       										     $(code_html).appendTo("#body"); // On passe code_html à jQuery() qui va nous créer l'arbre DOM !
-       										},
-       										error : function(resultat, statut, erreur){
-       										  
-       										},
-       										complete : function(resultat, statut){
-										
-       										}
-    									});
-									</script>
-								</section>
+							</header>
 
 							<!-- Section -->
-								
-
+							<section id="body">
+								<script>
+									$.ajax({
+										url : "historique.php",
+										type : 'GET',
+										dataType : 'html',
+										success : function(code_html, statut){
+						     $("#body").empty();
+						     $(code_html).appendTo("#body"); // On passe code_html à jQuery() qui va nous créer l'arbre DOM !
+										},
+										error : function(resultat, statut, erreur){
+										  
+										},
+										complete : function(resultat, statut){
+			
+										}
+									});
+								</script>
+							</section>
 						</div>
 					</div>
 
@@ -95,8 +91,8 @@ else {
 									<ul>
 										<li><a id="page_historique">Historique</a></li>
 										
-										<li><a id="page_blank">Blank</a></li>
-										<li><a id="WIP">WIP</a></li>
+										<li><a id="page_astuces">Astuces</a></li>
+										<li><a id="page_comparaison">Comparaison (WIP)</a></li>
 										<li>
 											<span class="opener">Submenu</span>
 											<ul>

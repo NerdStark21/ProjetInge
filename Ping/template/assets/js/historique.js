@@ -2,11 +2,30 @@
 // ############## Changement de page ########### //
 // ############################################# //
 
-$("#page_historique, #page_blank").click(function(event){
-    let newPage = (event.target.id == "historique")?"historique.php":"blank.html";
-    actualisation(newPage);
+$("#page_historique, #page_astuces, #page_comparaison").click(function(event){
+  let newPage = "error";
+  switch(event.target.id){
+    case "page_historique":
+      newPage = "historique.php";
+      break;
+    case "page_astuces":
+      newPage = "astuces.php";
+      break;
+    case "page_comparaison":
+      newPage = "comparaison.php";
+      break;
+    default:
+      console.log("VOus avez mal renseigné le chemin de la page ciblée !");
+  }
+  console.log("newPage");
+  actualisation(newPage);
 });
 
+/*
+Permet le changement de page en requète AJAX
+@input :
+  newPage : nom+extension de la page cible (pas URL)
+*/
 function actualisation(newPage){
   console.log(newPage);
   $.ajax({
@@ -30,86 +49,149 @@ function actualisation(newPage){
 // ########## Affichage et gestion du tableau ####### //
 // ################################################## //
 
+// Liste des mois de l'année (pour affichage)
 let listMonth = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 
-let listEnergyTest2017 = {"water" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+let listConso2017 = {"water" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
                   "electricity" : [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
                   "gas" : [25, 26, 27, 28, 32, 30, 31, 32, 33, 34, 35, 36]};
-let listEnergyTest2018 = {"water" : [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
-                  "electricity" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+let listConso2018 = {"water" : [20, 20, 19, 20, 21, 22, 21, 20, 21, 20, 19, 19],
+                  "electricity" : [30, 30, 25, 23, 20, 15, 13, 13, 15, 20, 25, 25],
                   "gas" : [25, 26, 27, 28, 32, 30, 31, 32, 33, 34, 35, 36]};
-let listEnergyTest2019 = {"water" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+let listConso2019 = {"water" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 50],
+                  "electricity" : [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 100],
+                  "gas" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]};
+
+let listConsoCompare2018 = {"water" : [25, 26, 27, 28, 32, 30, 31, 32, 33, 34, 35, 36],
                   "electricity" : [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
                   "gas" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]};
 
-let listCompareTest2018 = {"water" : [25, 26, 27, 28, 32, 30, 31, 32, 33, 34, 35, 36],
-                  "electricity" : [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
-                  "gas" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]};
+// Dictionnaire des listes de consommations d'énergie de l'habitation
+let listConso = {  2017 : listConso2017,
+                        2018 : listConso2018,
+                        2019 : listConso2019};
 
-let listEnergyTest = {  2017 : listEnergyTest2017,
-                        2018 : listEnergyTest2018,
-                        2019 : listEnergyTest2019};
+// Dictionnaire des consommations des habitations de mêmes types
+let listConsoCompare = { 2017 : listConsoCompare2018,
+                        2018 : listConsoCompare2018, 
+                        2019 : listConsoCompare2018};
 
-let listCompareTest = { 2017 : listCompareTest2018,
-                        2018 : listCompareTest2018, 
-                        2019 : listCompareTest2018};
-
+// Tous les types d'énergie
 let energyType = ["water", "electricity", "gas"];
-let annee = 2018;
+// Année actuelle
+let annee = 2019, lastYear = 2019;
 
 $(document).ready(function (){
-  console.log("READY");
   // Pour afficher tous les mois dans le tableau
   for(let k=0; k<12;k++){
       let clone = $(".monthClone").clone();
       clone.removeClass("monthClone");
-      clone.text(listMonth[k]);
+      clone.text(listMonth[k][0]);
       //clone.css("text-align: center;")
       $(".ligne_header").append(clone);
   }
 
+  /*
+  Permet le changement d'année dans le tableau
+  */
   $("#nextYear, #previousYear").click(function(event){
       if(event.target.id == "nextYear"){annee += 1;}
       else{annee -= 1;}
       viderTableau();
-      remplirTableau(listEnergyTest[annee], listCompareTest[annee]);
+      remplirTableau(listConso[annee], listConsoCompare[annee]);
   });
 
-  function remplirTableau(listEnergy, listCompare){
+  /*
+  Remplie le tableau ligne par ligne (appel : remplirLigne)
+  @input : 
+    listConsoYear => liste des conso à l'année voulue
+    listCompareYear => liste des conso des habitations de même type à l'année voulue
+  */
+  function remplirTableau(listConsoYear, listCompareYear){
       $("#year").text(annee);     // On met la bonne année
-      console.log(listEnergy);
+      // Remplissage du tableau par ligne
       for (j=0;j<3;j++){
-          //console.log(energyTypeTest[j], listEnergyTest, listCompareTest);
-          remplirLigne(energyType[j], listEnergy, listCompare);
+          remplirLigne(energyType[j], listConsoYear, listCompareYear);
       }
+      affichageWarnings();
   }
 
+  /*
+  Remplie une ligne du tableau
+  @input :
+    energy => type d'énergie
+    listConsoYear => liste des conso à l'année voulue
+    listCompareYear => liste des conso des habitations de même type à l'année voulue
+  */
+  function remplirLigne(energy, listConsoYear, listCompareYear){
+    for(k=0;k<listConsoYear[energy].length;k++){
+      let clone = $(".".concat(energy)).find(".valueClone").clone();
+      clone.removeClass("valueClone");
+      let actualEnergy = listConsoYear[energy][k];
+      let previousEnergy = listCompareYear[energy][k];
+      if(actualEnergy <= 1.05*previousEnergy){
+          clone.addClass("green value");
+      }
+      else if(actualEnergy <= 1.15*previousEnergy){
+          clone.addClass("orange value");
+      }
+      else{
+          clone.addClass("red value");
+      }
+      clone.text(actualEnergy);
+      $(".".concat(energy)).append(clone);
+    }
+    for(k=listConsoYear[energy].length;k<12;k++){
+      let clone = $(".".concat(energy)).find(".valueClone").clone();
+      clone.removeClass("valueClone");
+      clone.addClass("empty")
+      $(".".concat(energy)).append(clone);
+    }
+  };
+
+  /*
+  Vide le tableau de toutes les valeurs
+  */
   function viderTableau(){
     // Tous les td qui contiennent au moins la classe "value"
     $('tr td[class~="value"]').remove();
   }
 
-  function remplirLigne(energy, listEnergy, listCompare){
-      for(k=0;k<12;k++){
-          let clone = $(".".concat(energy)).find(".valueClone").clone();
-          clone.removeClass("valueClone");
-          let actualEnergy = listEnergy[energy][k];
-          let previousEnergy = listCompare[energy][k];
-          if(actualEnergy <= 1.05*previousEnergy){
-              clone.addClass("green value");
-          }
-          else if(actualEnergy <= 1.15*previousEnergy){
-              clone.addClass("orange value");
-          }
-          else{
-              clone.addClass("red value");
-          }
-          clone.text(actualEnergy);
-          $(".".concat(energy)).append(clone);
+  /*
+  Déclenche l'affichage des warning si la dernière valeur que l'on a à notre disposition est en rouge
+  */
+  function affichageWarnings(){
+    if(annee == lastYear){
+      for(energy of energyType){
+        if($("article#historique").find("tbody").find("tr."+energy).find('td[class~="value"]:last').attr("class") == "red value"){
+          affichageWarning(energy);
+        }
       }
-  };
+    }
+  }
 
-  remplirTableau(listEnergyTest[annee], listCompareTest[annee]);
+  /*
+  Affiche un warning
+  @input:
+  energy => le type d'énergie sur lequel on doit mettre le warning
+  */
+  function affichageWarning(energy){
+    console.log("warning");
+    var ligne = $("article#historique").find("tbody").find("tr."+energy).find("td:first");
+    var img = $("<img></img>");
+    img.attr("src", "images/warning.png");
+    img.attr("width", "20");
+    img.attr("height", "20");
+    img.attr("title", "Cliquez ici pour voir des astuces pour réduire votre consommation")
+    img.addClass("warning");
+    ligne.append(img);
+  }
+
+  remplirTableau(listConso[annee], listConsoCompare[annee]);
+});
+
+$("article#historique").on("click", ".warning", function(event){
+  actualisation("astuces.php");
 });
 
 // ############################################### //
@@ -117,36 +199,98 @@ $(document).ready(function (){
 // ############################################### //
 
 // C'est les dates anglo-saxones Mois/Jour/Année
-let listFlag2018 = {"energy": ["water", "electricity"],
-                    "date": ["01/01/2018", "02/01/2018"],
-                    "action": [["changer radiateur"], ["manger le chat", "manger le chien"]]};
+let listFlag = new Object;
+let listYear = ["2017", "2018", "2019"];
+for(year of listYear){
+  listFlag[year] = new Object;
+  for(month of listMonth){
+    listFlag[year][month] = new Object;
+    listFlag[year][month]["date"] = [];
+    listFlag[year][month]["action"] = [];
+  }
+}
+listFlag["2018"]["Janvier"]["date"].push("01/05/2018");
+listFlag["2018"]["Janvier"]["action"].push("changer le radiateur");
+listFlag["2018"]["Février"]["date"].push("02/01/2018");
+listFlag["2018"]["Février"]["action"].push("manger le chat");
+listFlag["2018"]["Mars"]["date"].push("03/21/2018");
+listFlag["2018"]["Mars"]["action"].push("manger le chien");
+listFlag["2018"]["Mars"]["date"].push("03/23/2018");
+listFlag["2018"]["Mars"]["action"].push("manger");
 
-function afficherFlag(){
-  for(k=0; k<listFlag2018["date"].length;k++){
-    let clone = $(".flagClone").clone();
-    clone.removeClass("flagClone");
-    clone.addClass("msg".concat(k));
-    clone.addClass("flag");
-    var date = new Date(listFlag2018["date"][k]);
-    if(k>0){
-      var previousdate = new Date(listFlag2018["date"][k-1]);
-      console.log(date.getMonth());
-      console.log(previousdate.getMonth());
-      clone.css('margin-left', ''.concat((date.getMonth()-previousdate.getMonth()-1)*7.69).concat('%'));
+/*
+Fait afficher tous les marqueurs de l'utilisateur (appel : afficherFlag)
+@input :
+  listFlag : liste de tous les marqueurs de l'utilisateur
+*/
+function afficherFlags(listFlag){
+  let listAction = listFlag[annee];
+  let first = true;
+  let compteur = 0, date;
+  let ecart = 0.25;
+  for(month of listMonth){
+    if(listAction[month]["date"].length == 0){
+      compteur ++;
     }
     else{
-      clone.css('margin-left', ''.concat((date.getMonth()+1)*7.69).concat('%'));
+      console.log(month);
+      date = new Date(listAction[month]["date"]);
+      console.log(compteur);
+      if(first){afficherFlag(date, 7.5+compteur*ecart, month); first = false;}
+      else{afficherFlag(date, compteur*ecart, month);}
+      compteur = 1;
     }
-    var txt = "";
-    for(j=0;j<listFlag2018["action"][k].length;j++){
-      txt = txt.concat(listFlag2018["action"][k][j]).concat("<br/>");
-    }
-    clone.find("p").html(txt);
-    $("#flags").append(clone);
   }
 }
 
-afficherFlag();
+/*
+Fait afficher un marqueur de l'utilisateur
+@input :
+  date : date correspondante au marqueur à afficher
+  margin : taille de la marge, pour positionner le marqueur en face du bon mois
+  month : mois associé au marqueur
+*/
+function afficherFlag(date, margin, month){
+  let clone = $("#flags").find(".flagClone").clone();
+  clone.removeClass("flagClone");
+  clone.addClass("msg".concat(date.getMonth()));
+  clone.addClass("flag");
+  clone.find("span").text(month); //indice du tableau que l'on utilise
+  clone.find("img").addClass("msg".concat(date.getMonth()));
+  clone.css('margin-left', ''.concat(margin+"%"));
+  clone.attr("title", "Cliquez pour avoir le détail");
+  clone.find("img").attr("title", "Cliquez pour avoir le détail");
+  $("#flags").append(clone);
+  console.log(margin);
+}
+
+/* Pour rechercher toutes les flags correspondant à ce mois
+Input :
+indiceMonth => indice du mois que l'on recherche (de 0 à 11)
+listFlag => la liste de tous les flag
+Output :
+out => liste des indices auxquels on peut trouver les descriptions des flags du mois selectionné
+*/
+$("#flags").on("click", ".flag", function(event){
+  let month = $(this).find("span").text();
+  let article = $("article#msg");
+  article.children().remove();
+  $("<span></span>").appendTo(article);
+  $("<ul></ul>").appendTo(article);
+  let txt = "Voici la liste de tous les marqueurs que vous avez mis pour le mois de ";
+  article.find("span").text(txt+month.toLowerCase()+" :");
+  let action, datestr, date;
+  let flag = listFlag[annee][month];
+  for(k=0;k<listFlag[annee][month]["date"].length;k++){
+    $("<li></li>").appendTo(article.find("ul"));
+    date = new Date(flag["date"][k]);
+    action = flag["action"][k];
+    datestr = date.getDate()+" "+listMonth[date.getMonth()];
+    article.find("li:last").text(datestr+" : "+action);
+  }
+});
+
+afficherFlags(listFlag);
 
 // ############################################### //
 // ########### Gestion du formulaire ############# //
@@ -167,8 +311,8 @@ $("#ajoutflag").on("click", ".ajout", function ouvrir(){
   $("#form").find("#ajoutflag").find(".ajout").remove();
 });
 
-// Pour ouvrir le formulaire d'ajout de marqueur (annulation)
-$("#ajoutflag").on("click", ".annuler", function fermer(){
+// Fonction pour fermer le formulaire
+function close(){
   $("#form_ajax").find("form").remove();
   var button = $("#form").find(".annuler").clone();
   button.removeClass("annuler");
@@ -177,6 +321,73 @@ $("#ajoutflag").on("click", ".annuler", function fermer(){
   $("#ajoutflag").append(button);
   $("#ajoutflag").find(".annuler").remove();
   $("#ajoutflag").find(".confirm").remove();
+};
+
+// Bouton "Annuler" du formulaire
+$("#ajoutflag").on("click", ".annuler", function annuler(){
+  close();
 });
 
-// Pour ouvrir le formulaire d'ajout de marqueur (ajout)
+// Bouton "Ajout" du formulaire
+$("#ajoutflag").on("click", ".confirm", function confirm(){
+  var date = $("#form_ajax").find("#date").val();
+  var modification = $("#form_ajax").find("#modification").val();
+  if(date != "" && modification != ""){
+    date = new Date(date);
+    listFlag[annee][listMonth[date.getMonth()]]["date"].push($("#form_ajax").find("#date").val());
+    listFlag[annee][listMonth[date.getMonth()]]["action"].push($("#form_ajax").find("#modification").val());
+    close();
+  }
+  
+  $("#flags").find(".flag").remove();
+  afficherFlags(listFlag);
+});
+
+// ##################################################### //
+// ####### Gestion du formulaire de comparaison ######## //
+// ##################################################### //
+
+function create_select(element, id){
+  var select = $("<option></option>");
+  select.addClass("select");
+  select.attr("value", element);
+  select.text(element);
+  $("#interval").find("select#"+id).append(select);
+}
+
+function creation_formulaire(){
+  for(month of listMonth){
+    create_select(month, "month");
+  }
+  for(year of listYear){
+    create_select(year, "year");
+  }
+  for(energy of energyType){
+    create_select(energy, "energy");
+  }
+}
+
+$("#interval").on("click", ".select", function select(){
+  $("#interval").find("section#text_comparaison").find("p").remove();
+  let month = $("#interval").find("select#month").val();
+  let year = $("#interval").find("select#year").val();
+  let energy = $("#interval").find("select#energy").val();
+  let moyenne = 0;
+  for(year of listYear){
+    moyenne+=listConsoCompare[year][energy][listMonth.indexOf(month)];
+  }
+  moyenne /= listYear.length;
+  moyenne = (moyenne-listConso[annee][energy][listMonth.indexOf(month)])/moyenne*100;
+  moyenne = Math.trunc(moyenne);
+  let text = "Vous avez consommée ";
+  if(moyenne>0){
+    text += moyenne+"% de plus";
+  }
+  else{
+    text += (-moyenne)+"% de moins";
+  }
+  text += " que les habitations de même types que vous pendant la même période.";
+  $("article#interval").find("section#text_comparaison").append($("<p></p>").text(text));
+});
+
+creation_formulaire();

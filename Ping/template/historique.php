@@ -15,7 +15,7 @@
 	<section id="legende">
 		<h2>Légende</h2>
 		<p>Comparaison mois par mois par rapport aux habitations de même type :</p>
-		<img src="images/button-red.png" height="15" width="15"><span>Supérieure de 15%</span><br/>
+		<img src="images/button-red.png" height="15" width="15"><span>Supérieure d'au moins 15%</span><br/>
 		<img src="images/button-orange.png" height="15" width="15"><span>Supérieure de 5 à 15%</span><br/>
 		<img src="images/button-green.png" height="15" width="15"><span>Inférieure ou égale (à 5% près)</span>
 	</section>
@@ -40,7 +40,7 @@
 		</thead>
 		<tbody>
 	      	<tr class="water">
-				<td class="energyType">Electricité</td>
+				<td class="energyType">Electricité<!--<img src="images/warning.png" width="20" height="20">--></td>
 				<td class="valueClone"></td>
 			</tr>
 	      	<tr class="electricity">
@@ -56,15 +56,42 @@
     <div id="flags">
         <div class="flagClone">
             <img src="images/fleche_haut_rouge.ico" alt="Fleche rouge" height="50" width="30">
-            <p>coucou</p>
+            <span></span>
         </div>
     </div>
 </article>
+<article id="msg">
 
-<article class="comparaison">
-	<?php include "assets/js/comparaison.php";?>
-	<div id="area1"></div>
-	<div id="area2"></div>
+</article>
+
+<article id="interval">
+	<section>
+		<p>Sélection d'une période :</p>
+		<form>
+			<div id="select_month">
+				<label for="month">Mois : </label>
+				<select name="month" id="month" >
+					<!-- Généré automatiquement en js -->
+				</select>
+			</div>
+			<div id="select_year">
+				<label for="year">Année : </label>
+				<select name="year" id="year">
+					<!-- Généré automatiquement en js -->
+				</select>
+			</div>
+			<div id="select_energy">
+				<label for="energy">Energie : </label>
+				<select name="energy" id="energy">
+					<!-- Généré automatiquement en js -->
+				</select>
+			</div>
+			<div class="button select">Comparer</div>
+		</form>
+	</section>
+	<section id ="text_comparaison">
+		<!-- Généré en js -->
+	</section>
 </article>
 
 <script type="text/javascript" src="assets/js/historique.js"></script>

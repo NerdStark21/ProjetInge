@@ -1,6 +1,6 @@
-<script type="text/javascript" src="assets/js/d3.v3.js"></script>
+
 <script type="text/javascript">
-	console.log("salut");
+	
 function repartitionEnergies(valUtilElec, valUtilGaz, valUtilEau, valLogElec, valLogGaz, valLogEau, rayonExt, rayonInt, couleurElec, couleurGaz, couleurEau, taillePolice, tailleLegende, taillePoliceLegendes)
 {	  
 	/* Role : Cette fonction affiche deux graphiques (de type pie chart) qui représentent la répartition de la facture d'energie entre l'eau le gaz et l'électricité, pour le logement de l'utilisateur et pour les logements de même type.

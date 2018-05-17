@@ -37,12 +37,12 @@ div.clear
 
 /* Le tableau de l'historique */
 
-.monthClone, .valueClone, .flagClone
+.monthClone, .valueClone, .flagClone, .listClone
 {
 	display: none;
 }
 
-table, h3
+table, h3, table th
 {text-align: center;}
 
 table
@@ -72,4 +72,24 @@ div#flags
 aside#form
 {float: right; text-align: left; width: 40%;}
 
+/* les marqueurs */
 
+div#flags span
+{display: none;}
+
+/* Le formulaire pour selectionner l'interval de temps */
+
+article#interval select
+{
+	width: 20%;
+}
+
+article#interval label
+{
+	float: left;
+}
+
+article#interval div#select_month, article#interval div#select_year, article#interval div#select_energy
+{
+	margin: 10px;
+}
