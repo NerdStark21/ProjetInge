@@ -1,0 +1,12 @@
+/*
+article#infos section#beginner div
+{
+	display: inline-flex;
+}
+*/
+
+article#infos section
+{
+	margin-top: 20px;
+    margin-bottom: 20px;
+}

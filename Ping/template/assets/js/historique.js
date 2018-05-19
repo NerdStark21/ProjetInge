@@ -2,7 +2,7 @@
 // ############## Changement de page ########### //
 // ############################################# //
 
-$("#page_historique, #page_astuces, #page_comparaison").click(function(event){
+$("#page_historique, #page_astuces, #page_comparaison, #page_infos").click(function(event){
   let newPage = "error";
   switch(event.target.id){
     case "page_historique":
@@ -13,6 +13,9 @@ $("#page_historique, #page_astuces, #page_comparaison").click(function(event){
       break;
     case "page_comparaison":
       newPage = "comparaison.php";
+      break;
+    case "page_infos":
+      newPage = "infos.php";
       break;
     default:
       console.log("VOus avez mal renseigné le chemin de la page ciblée !");

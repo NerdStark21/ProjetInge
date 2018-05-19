@@ -31,6 +31,7 @@ else {
 	<link rel="stylesheet" href="assets/css/main.css">
 	<link rel="stylesheet" href="assets/css/historique.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/addflag.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/infos.css">
   <!-- JavaScript -->
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
@@ -94,21 +95,14 @@ else {
 										<li><a id="page_astuces">Astuces</a></li>
 										<li><a id="page_comparaison">Comparaison (WIP)</a></li>
 										<li>
-											<span class="opener">Submenu</span>
+											<span class="opener">Paramètres</span>
 											<ul>
-												<li><a href="#">Lorem Dolor</a></li>
-												<li><a href="#">Ipsum Adipiscing</a></li>
-												<li><a href="#">Tempus Magna</a></li>
-												<li><a href="#">Feugiat Veroeros</a></li>
+												<li><a href="#">Mon compte</a></li>
+												<li><a id="page_infos">Mes infos</a></li>
 											</ul>
 										</li>
 									</ul>
 								</nav>
-
-							
-								
-
-							
 								<section>
 									<header class="major">
 										<h2>Get in touch</h2>
