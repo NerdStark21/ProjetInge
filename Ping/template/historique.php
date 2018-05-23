@@ -8,7 +8,7 @@
 		<!-- C'est ici qu'on va faire apparaitre la boite de dialogue pour que l'utilisateur rentre les infos pour le rajout d'un marqueur -->
 	</div>
 	<div id="ajoutflag">
-       	<span class="button ajout">Ajout d'un marqueur</span>
+       	<span class="button ajout" title="WIP">Ajout d'un marqueur</span>
     </div>
 </aside>
 

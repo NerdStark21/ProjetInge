@@ -2,11 +2,7 @@
 // ############## Changement de page ########### //
 // ############################################# //
 
-
-
-
-
-$("#page_historique, #page_astuces, #page_comparaison, #page_infos").click(function(event){
+$("#page_historique, #page_astuces, #page_comparaison, #page_infos, #page_conso_journaliere").click(function(event){
   let newPage = "error";
   switch(event.target.id){
     case "page_historique":
@@ -20,6 +16,9 @@ $("#page_historique, #page_astuces, #page_comparaison, #page_infos").click(funct
       break;
     case "page_infos":
       newPage = "infos.php";
+      break;
+    case "page_conso_journaliere":
+      newPage = "conso_journaliere.php";
       break;
     default:
       console.log("VOus avez mal renseigné le chemin de la page ciblée !");
@@ -74,18 +73,6 @@ function actualisation(newPage){
 
 // req.open('GET', 'index.php', true);
 // req.send(null);
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Liste des mois de l'année (pour affichage)
 let listMonth = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
@@ -465,23 +452,25 @@ $("#ajoutflag").on("click", ".confirm", function confirm(){
 // ####### Gestion du formulaire de comparaison ######## //
 // ##################################################### //
 
-function create_select(element, id){
+function create_select(element, id, label){
   var select = $("<option></option>");
   select.addClass("select");
   select.attr("value", element);
-  select.text(element);
+  if(label != ""){select.text(label);}
+  else{select.text(element);}
   $("#interval").find("select#"+id).append(select);
 }
 
 function creation_formulaire(){
   for(month of listMonth){
-    create_select(month, "month");
+    create_select(month, "month", "");
   }
   for(year of listYear){
-    create_select(year, "year");
+    create_select(year, "year", "");
   }
-  for(energy of energyType){
-    create_select(energy, "energy");
+  let listEnergy = ["Eau", "Electricité", "Gaz"]
+  for(k=0;k<3;k++){
+    create_select(energyType[k], "energy", listEnergy[k]);
   }
 }
 

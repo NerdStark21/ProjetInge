@@ -42,6 +42,10 @@ div.clear
 	display: none;
 }
 
+table tbody td.value{
+	font-weight: bold;
+}
+
 table, h3, table th
 {text-align: center;}
 
@@ -91,5 +95,9 @@ article#interval label
 
 article#interval div#select_month, article#interval div#select_year, article#interval div#select_energy
 {
-	margin: 10px;
+	margin-bottom: 10px;
+}
+
+article#interval div label{
+	width: 60px;
 }

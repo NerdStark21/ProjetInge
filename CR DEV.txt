@@ -1,9 +1,0 @@
-On va faire du calcul côté serveur parce que plus de sécurité
-Revérifier si Symfony est un pré-requis, parce que ça risque d'alourdir le projet et de nous prendre beaucoup trop de temps !
-Est-ce que la donnée doit être dispo pour le client
-On va faire des requetes ajax avec du javascript pour recharger une certaine partie de la page
-Privilégier le json au xml
-bootstrap version 4
-api google pour graphique et gestion de données
-d3.js pour visualisation ?
-wordpress, drupal (framework)

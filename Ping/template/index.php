@@ -34,6 +34,8 @@ else {
 	<link rel="stylesheet" type="text/css" href="assets/css/infos.css">
   <!-- JavaScript -->
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.7/xlsx.core.min.js"></script>  
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/xls/0.7.4-a/xls.core.min.js"></script>  
 </head>
 	<body class="">
 
@@ -76,13 +78,6 @@ else {
 					<div id="sidebar" class="inactive">
 						<div class="inner">
 
-							<!-- Search -->
-								<section id="search" class="alt">
-									<form method="post" action="#">
-										<input type="text" name="query" id="query" placeholder="Search">
-									</form>
-								</section>
-
 							<!-- Menu -->
 								<nav id="menu">
 									<header class="major">
@@ -93,33 +88,21 @@ else {
 										<li><a id="page_historique">Historique</a></li>
 										
 										<li><a id="page_astuces">Astuces</a></li>
-										<li><a id="page_comparaison">Comparaison (WIP)</a></li>
+										<li><a id="page_conso_journaliere">Consommation journalière</a></li>
+										<li><a id="page_comparaison">Répartition de consommations</a></li>
 										<li>
 											<span class="opener">Paramètres</span>
 											<ul>
-												<li><a href="#">Mon compte</a></li>
 												<li><a id="page_infos">Mes infos</a></li>
 											</ul>
 										</li>
 									</ul>
 								</nav>
-								<section>
-									<header class="major">
-										<h2>Get in touch</h2>
-									</header>
-									<p>Peut-être qqc ici</p>
-									<ul class="contact">
-										<li class="fa-envelope-o"><a href="#">information@untitled.tld</a></li>
-										<li class="fa-phone">(000) 000-0000</li>
-										<li class="fa-home">1234 Somewhere Road #8254<br>
-										Nashville, TN 00000-0000</li>
-									</ul>
-								</section>
 
 							<!-- Footer -->
 								<footer id="footer">
 									<p class="copyright">© Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-    <p> Il ne faudra pas oublier de mentionner les licences ici !</p>
+    								<p> Il ne faudra pas oublier de mentionner les licences ici !</p>
 								</footer>
 
 						</div>
