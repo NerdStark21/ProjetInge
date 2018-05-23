@@ -1,3 +1,6 @@
+<?php
+require_once 'index.php'
+?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -122,7 +125,7 @@
     		<div id="area1"></div>
 			<div id="area2"></div>
     		<script type="text/javascript">
-    			visuPrevObj(100.9999, 200, 280, 10, 100, 80, 300, 450, 195, 400, 70, 70, "rgb(28,148,255)", "rgb(186,186,186)"
+    			visuPrevObj(<?= $previsionElec;  ?>	, <?= $previsionGaz;  ?>, <?= $previsionWater;  ?>, <?= $consoElecJour;  ?>, <?= $consoGazJour;  ?>, <?= $consoWaterJour;  ?>, <?= $objectifElec;  ?>, <?= $objectifGaz;  ?>, <?= $objectifWater;  ?>, 400, 70, 70, "rgb(28,148,255)", "rgb(186,186,186)"
     				, "rgb(255,140,0)", 25);
 
 			</script>	        

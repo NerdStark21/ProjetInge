@@ -2,6 +2,10 @@
 // ############## Changement de page ########### //
 // ############################################# //
 
+
+
+
+
 $("#page_historique, #page_astuces, #page_comparaison, #page_infos").click(function(event){
   let newPage = "error";
   switch(event.target.id){
@@ -21,6 +25,7 @@ $("#page_historique, #page_astuces, #page_comparaison, #page_infos").click(funct
       console.log("VOus avez mal renseigné le chemin de la page ciblée !");
   }
   console.log("newPage");
+
   actualisation(newPage);
 });
 
@@ -52,40 +57,141 @@ function actualisation(newPage){
 // ########## Affichage et gestion du tableau ####### //
 // ################################################## //
 
+// Importer le tableau depuis PHP
+
+// const req = new XMLHttpRequest();
+
+// req.onreadystatechange = function(event) {
+//     // XMLHttpRequest.DONE === 4
+//     if (this.readyState === XMLHttpRequest.DONE) {
+//         if (this.status === 200) {
+//             console.log("Réponse reçue: %s", this.responseText);
+//         } else {
+//             console.log("Status de la réponse: %d (%s)", this.status, this.statusText);
+//         }
+//     }
+// };
+
+// req.open('GET', 'index.php', true);
+// req.send(null);
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Liste des mois de l'année (pour affichage)
 let listMonth = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 
-let listConso2017 = {"water" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+ /*{"water" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 50,40],
+                  "electricity" : [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 100,90],
+                  "gas" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,12] }*/
+/*let listConso2017 = {"water" : [1,2,3,4,5,6,7,8,9,10,11,12],
                   "electricity" : [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
-                  "gas" : [25, 26, 27, 28, 32, 30, 31, 32, 33, 34, 35, 36]};
+                  "gas" : [25, 26, 27, 28, 32, 30, 31, 32, 33, 34, 35, 36]  };
+
 let listConso2018 = {"water" : [20, 20, 19, 20, 21, 22, 21, 20, 21, 20, 19, 19],
                   "electricity" : [30, 30, 25, 23, 20, 15, 13, 13, 15, 20, 25, 25],
                   "gas" : [25, 26, 27, 28, 32, 30, 31, 32, 33, 34, 35, 36]};
-let listConso2019 = {"water" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 50],
-                  "electricity" : [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 100],
-                  "gas" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]};
+*/
 
-let listConsoCompare2018 = {"water" : [25, 26, 27, 28, 32, 30, 31, 32, 33, 34, 35, 36],
+var it_works = false;
+
+console.log(it_works);
+let  listConso2017  = $.parseJSON($.ajax({
+        url:  'function1.php',
+        dataType: "json", 
+        async: false,
+     
+    }).responseText); // This will wait until you get a response from the ajax request.
+
+console.log(it_works);
+let  listConso2016  = $.parseJSON($.ajax({
+        url:  'function2.php',
+        dataType: "json", 
+        async: false,
+     
+    }).responseText); // This will wait until you get a response from the ajax request.
+
+console.log(it_works);
+let  listConsoCompare2016  = $.parseJSON($.ajax({
+        url:  'function3.php',
+        dataType: "json", 
+        async: false,
+     
+    }).responseText); // This will wait until you get a response from the ajax request.
+
+console.log(it_works);
+let  listConsoCompare2017  = $.parseJSON($.ajax({
+        url:  'function4.php',
+        dataType: "json", 
+        async: false,
+     
+    }).responseText); // This will wait until you get a response from the ajax request.
+
+
+
+/*let listConsoCompare2018 = {"water" : [25, 26, 27, 28, 32, 30, 31, 32, 33, 34, 35, 36],
                   "electricity" : [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
-                  "gas" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]};
-
+                  "gas" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]   };
+*/
 // Dictionnaire des listes de consommations d'énergie de l'habitation
-let listConso = {  2017 : listConso2017,
-                        2018 : listConso2018,
-                        2019 : listConso2019};
+let listConso = {     
+                        2016 : listConso2016,
+                        2017 : listConso2017
+                        };
 
 // Dictionnaire des consommations des habitations de mêmes types
-let listConsoCompare = { 2017 : listConsoCompare2018,
-                        2018 : listConsoCompare2018, 
-                        2019 : listConsoCompare2018};
+let listConsoCompare = { 2016 : listConsoCompare2016,
+                        2017 : listConsoCompare2017, 
+                        };
 
 // Tous les types d'énergie
 let energyType = ["water", "electricity", "gas"];
 // Année actuelle
-let annee = 2019, lastYear = 2019;
+let annee = 2017, lastYear = 2017;
+let tab = [];
+
+
+
+
+
+/*console.log(listConso2017);
+console.log(listConso2019);*/
+
+
+
+ 
 
 $(document).ready(function (){
   // Pour afficher tous les mois dans le tableau
+
+  //console.log(data);
+
+/* $.ajax({
+     url : "function.php",
+     type : 'GET',
+     dataType : 'json',
+     success : function(data){
+          // $("#body").empty();
+          // $(code_html).appendTo("#body"); // On passe code_html à jQuery() qui va nous créer l'arbre DOM !
+          
+          listConso2019=data;
+          console.log(listConso2019);
+          //remplirTableau(listCons, listConsoCompare[annee]);
+
+     },
+     
+  });
+*/
+  let annee = 2017;
   for(let k=0; k<12;k++){
       let clone = $(".monthClone").clone();
       clone.removeClass("monthClone");
@@ -133,6 +239,7 @@ $(document).ready(function (){
     listCompareYear => liste des conso des habitations de même type à l'année voulue
   */
   function remplirLigne(energy, listConsoYear, listCompareYear){
+    console.log(listConsoYear);
     for(k=0;k<listConsoYear[energy].length;k++){
       let clone = $(".".concat(energy)).find(".valueClone").clone();
       clone.removeClass("valueClone");
@@ -198,7 +305,7 @@ $(document).ready(function (){
     ligne.append(img);
   }
 
-  remplirTableau(listConso[annee], listConsoCompare[annee]);
+  
 });
 
 $("article#historique").on("click", ".warning", function(event){
@@ -402,3 +509,4 @@ $("#interval").on("click", ".select", function select(){
 });
 
 creation_formulaire();
+

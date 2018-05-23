@@ -1,3 +1,4 @@
+
 <header class="major">
 	<h2>Historique de consommation à l'année</h2>
 </header>
