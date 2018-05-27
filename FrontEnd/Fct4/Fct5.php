@@ -36,7 +36,7 @@ require_once 'index.php'
         		var prev = [valPrevElec, valPrevGaz, valPrevEau];
         		var obj = [objElec, objGaz, objEau];
         		var val = [valElec, valGaz, valEau];
-        		var texteLegendeBas = ["Eau", "Gaz", "Elec."];
+        		var texteLegendeBas = ["Elec.", "Gaz", "Eau"];
         		var texteLegendeCote = ["Prévision", "Objectif", "Consommé depuis le début du mois"];
         		var couleurLegende = [couleurPrev, couleurObj, couleurVal];
         		var max = 0;
@@ -119,15 +119,16 @@ require_once 'index.php'
     			} 					 
 			}		    
 
+
 	        </script>
     </head>
     	<body>
     		<div id="area1"></div>
 			<div id="area2"></div>
     		<script type="text/javascript">
-    			visuPrevObj(<?= $previsionElec;  ?>	, <?= $previsionGaz;  ?>, <?= $previsionWater;  ?>, <?= $consoElecJour;  ?>, <?= $consoGazJour;  ?>, <?= $consoWaterJour;  ?>, <?= $objectifElec;  ?>, <?= $objectifGaz;  ?>, <?= $objectifWater;  ?>, 400, 70, 70, "rgb(28,148,255)", "rgb(186,186,186)"
+    			visuPrevObj(<?= $ConsoElecJour[1];  ?>	, <?= $ConsoGazJour[1];  ?>, <?= $ConsoWaterJour[1];  ?>, <?= $ConsoElecJour[0];  ?>, <?= $ConsoGazJour[0];  ?>, <?= $ConsoWaterJour[0];  ?>, <?= $ConsoElecJour[2];  ?>, <?= $ConsoGazJour[2];  ?>, <?= $ConsoWaterJour[2];  ?>, 400, 70, 70, "rgb(28,148,255)", "rgb(186,186,186)"
     				, "rgb(255,140,0)", 25);
-
+    			
 			</script>	        
     	</body>
 </html>
