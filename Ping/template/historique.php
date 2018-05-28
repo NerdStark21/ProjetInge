@@ -8,7 +8,7 @@
 		<!-- C'est ici qu'on va faire apparaitre la boite de dialogue pour que l'utilisateur rentre les infos pour le rajout d'un marqueur -->
 	</div>
 	<div id="ajoutflag">
-       	<span class="button ajout" title="WIP">Ajout d'un marqueur</span>
+       	<span class="button ajout" title="Grâce à ce bouton, vous pouvez enregistrer les différents travaux de votre habitation">Ajout d'un marqueur</span>
     </div>
 </aside>
 
@@ -87,7 +87,7 @@
 					<!-- Généré automatiquement en js -->
 				</select>
 			</div>
-			<div class="button select">Comparer</div>
+			<div class="button select" title="Vous pouvez comparer votre consommation avant et après un changement dans votre logement">Comparer</div>
 		</form>
 	</section>
 	<section id ="text_comparaison">

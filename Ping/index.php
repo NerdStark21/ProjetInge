@@ -1,13 +1,13 @@
 <?php 
 /* Main page with two forms: sign up and log in */
-require 'logInSystem/db.php';
+require 'page_accueil/logInSystem/db.php';
 session_start();
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <title>Sign-Up/Login Form</title>
-  <?php include 'css/css.html'; ?>
+  <?php include 'page_accueil/css/css.html'; ?>
 </head>
 
 <?php 
@@ -15,13 +15,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     if (isset($_POST['login'])) { //user logging in
 
-        require 'logInSystem/login.php';
+        require 'page_accueil/logInSystem/login.php';
         
     }
     
     elseif (isset($_POST['register'])) { //user registering
         
-        require 'logInSystem/register.php';
+        require 'page_accueil/logInSystem/register.php';
         
     }
 }
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             <!-- autocomplete off -->
           </div>
           
-          <p class="forgot"><a href="forgot.php">Forgot Password?</a></p>
+          <p class="forgot"><a href="page_accueil/forgot.php">Forgot Password?</a></p>
           
           <button class="button button-block" name="login" />Log In</button>
           
@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 </div> <!-- /form -->
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
-    <script src="js/index.js"></script>
+    <script src="page_accueil/js/index.js"></script>
 
 </body>
 </html>

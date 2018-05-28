@@ -2,11 +2,7 @@
 // ############## Changement de page ########### //
 // ############################################# //
 
-
-
-
-
-$("#page_historique, #page_astuces, #page_comparaison, #page_infos").click(function(event){
+$("#page_historique, #page_astuces, #page_comparaison, #page_infos, #page_conso_journaliere").click(function(event){
   let newPage = "error";
   switch(event.target.id){
     case "page_historique":
@@ -21,8 +17,11 @@ $("#page_historique, #page_astuces, #page_comparaison, #page_infos").click(funct
     case "page_infos":
     newPage = "infos.php";
     break;
+    case "page_conso_journaliere":
+    newPage = "conso_journaliere.php";
+    break;
     default:
-    console.log("VOus avez mal renseigné le chemin de la page ciblée !");
+    console.log("Vous avez mal renseigné le chemin de la page ciblée !");
   }
   console.log("newPage");
 
@@ -151,7 +150,7 @@ let listConsoCompare = { 2016 : listConsoCompare2016,
 // Tous les types d'énergie
 let energyType = ["water", "electricity", "gas"];
 // Année actuelle
-let annee = 2017, lastYear = 2016;
+let annee = 2017, lastYear = 2018;
 let tab = [];
 
 
@@ -174,6 +173,8 @@ $(document).ready(function (){
   Permet le changement d'année dans le tableau
   */
   $("#nextYear, #previousYear").click(function(event){
+    console.log(annee);
+    console.log(lastYear);
     if(event.target.id == "nextYear" && annee + 1 <= lastYear){
       annee += 1;
       viderTableau();
@@ -281,7 +282,23 @@ $(document).ready(function (){
 });
 
 $("article#historique").on("click", ".warning", function(event){
-  actualisation("astuces.php");
+
+  $.ajax({
+     url : astuces.php,
+     type : 'GET',
+     dataType : 'html',
+     data : "",
+     success : function(code_html, statut){
+      $("#body").empty();
+          $(code_html).appendTo("#body"); // On passe code_html à jQuery() qui va nous créer l'arbre DOM !
+        },
+        error : function(resultat, statut, erreur){
+
+        },
+        complete : function(resultat, statut){
+
+        }
+      });
 });
 
 // ############################################### //
