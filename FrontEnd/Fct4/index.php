@@ -5,24 +5,24 @@
 // Consommation Electricité Moyenne 
 // Parameter : (id : identifiant compteur, dated : date de consommation) 
 function getConsommationElec($id,$dated) {
-    $json_source = file_get_contents('http://localhost:3000/electricity_consumption');
-    $json_data = json_decode($json_source, true);
-    $strid=(string)$id;
-    foreach($json_data as $v){
-        if ( $v['id']== $strid){
-            foreach($v['dates'] as $s){
-                if( $s['start']== $dated){
-                  global $valeur;
-                  $valeur = $s['value'];
-                    }
-           
-                }
-        
-            }
-   
+  $json_source = file_get_contents('http://localhost:3000/electricity_consumption');
+  $json_data = json_decode($json_source, true);
+  $strid=(string)$id;
+  foreach($json_data as $v){
+    if ( $v['id']== $strid){
+      foreach($v['dates'] as $s){
+        if( $s['start']== $dated){
+          global $valeur;
+          $valeur = $s['value'];
         }
-   $intvaleur=(int)$valeur*0.12440;
-   return $intvaleur;
+
+      }
+
+    }
+
+  }
+  $intvaleur=(int)$valeur*0.12440;
+  return $intvaleur;
 
    //                                |Prix du kWh - Option base   |Prix du kWh - Heures creuses
   // EDF - Tarif Bleu (réglementé)  |0,14 670 €                  |0,12 440 €
@@ -31,47 +31,47 @@ function getConsommationElec($id,$dated) {
 // Moyenne Consommation Electricité des habitations similaires
 // Parameter : (id : identifiant compteur, dated : date de consommation) 
 function getConsommationElecm($id,$dated) {
-    $json_source = file_get_contents('json\jsonEleccompact.json');
-    $json_data = json_decode($json_source, true);
-    $strid=(string)$id;
-    foreach($json_data as $v){
-        if ( $v['id']== $strid){
-            foreach($v['dates'] as $s){
-                if( $s['start']== $dated){
-                  global $valeur;
-                  $valeur = $s['moyenneHabSimilaire'];
-                    }           
-                }
-        
-            }
-   
-        }
-   $intvaleur=(int)$valeur*0.12440;
-   return $intvaleur; 
+  $json_source = file_get_contents('json\jsonEleccompact.json');
+  $json_data = json_decode($json_source, true);
+  $strid=(string)$id;
+  foreach($json_data as $v){
+    if ( $v['id']== $strid){
+      foreach($v['dates'] as $s){
+        if( $s['start']== $dated){
+          global $valeur;
+          $valeur = $s['moyenneHabSimilaire'];
+        }           
+      }
+
+    }
+
+  }
+  $intvaleur=(int)$valeur*0.12440;
+  return $intvaleur; 
 }
 
 
 // Moyenne Consommation Gaz  
 // Parameter : (id : identifiant compteur, dated : date de consommation) 
 function getConsommationGaz($id,$dated) {
-    $json_source = file_get_contents('json\jsonGazcompact.json');
-    $json_data = json_decode($json_source, true);
-    $strid=(string)$id;
-    foreach($json_data as $v){
-        if ( $v['id']== $strid){
-            foreach($v['dates'] as $s){
-                if( $s['start']== $dated){
-                  global $valeur;
-                  $valeur = $s['value'];
-                    }
-           
-                }
-        
-            }
-   
+  $json_source = file_get_contents('json\jsonGazcompact.json');
+  $json_data = json_decode($json_source, true);
+  $strid=(string)$id;
+  foreach($json_data as $v){
+    if ( $v['id']== $strid){
+      foreach($v['dates'] as $s){
+        if( $s['start']== $dated){
+          global $valeur;
+          $valeur = $s['value'];
         }
-   $intvaleur=(int)$valeur*0.0545;
-   return $intvaleur; 
+
+      }
+
+    }
+
+  }
+  $intvaleur=(int)$valeur*0.0545;
+  return $intvaleur; 
 
                     //Le prix du kWh de gaz chez EDF
                    //Tarif                                 Abonnement annuel (toutes zones)           Prix du kWh par zone tarifaire (€ TTC)
@@ -80,46 +80,46 @@ function getConsommationGaz($id,$dated) {
 // Moyenne Consommation Gaz des habitations similaires
 // Parameter : (id : identifiant compteur, dated : date de consommation) 
 function getConsommationGazm($id,$dated) {
-    $json_source = file_get_contents('json\jsonGazcompact.json');
-    $json_data = json_decode($json_source, true);
-    $strid=(string)$id;
-    foreach($json_data as $v){
-        if ( $v['id']== $strid){
-            foreach($v['dates'] as $s){
-                if( $s['start']== $dated){
-                  global $valeur;
-                  $valeur = $s['moyenneHabSimilaire'];
-                    }
-           
-                }
-        
-            }
-   
+  $json_source = file_get_contents('json\jsonGazcompact.json');
+  $json_data = json_decode($json_source, true);
+  $strid=(string)$id;
+  foreach($json_data as $v){
+    if ( $v['id']== $strid){
+      foreach($v['dates'] as $s){
+        if( $s['start']== $dated){
+          global $valeur;
+          $valeur = $s['moyenneHabSimilaire'];
         }
-   $intvaleur=(int)$valeur*0.0545;
-   return $intvaleur; 
+
+      }
+
+    }
+
+  }
+  $intvaleur=(int)$valeur*0.0545;
+  return $intvaleur; 
 }
 // Moyenne Consommation Eau  
 // Parameter : (id : identifiant compteur, dated : date de consommation) 
 function getConsommationEau($id,$dated) {
-    $json_source = file_get_contents('json\jsonEaucompact.json');
-    $json_data = json_decode($json_source, true);
-    $strid=(string)$id;
-    foreach($json_data as $v){
-        if ( $v['id']== $strid){
-            foreach($v['dates'] as $s){
-                if( $s['start']== $dated){
-                  global $valeur;
-                  $valeur = $s['value'];
-                    }
-           
-                }
-        
-            }
-   
+  $json_source = file_get_contents('json\jsonEaucompact.json');
+  $json_data = json_decode($json_source, true);
+  $strid=(string)$id;
+  foreach($json_data as $v){
+    if ( $v['id']== $strid){
+      foreach($v['dates'] as $s){
+        if( $s['start']== $dated){
+          global $valeur;
+          $valeur = $s['value'];
         }
-   $intvaleur=(int)$valeur*1.4;
-   return $intvaleur; 
+
+      }
+
+    }
+
+  }
+  $intvaleur=(int)$valeur*1.4;
+  return $intvaleur; 
 
 // Tarif stéphanoise des eaux   1,4€ le M3
 
@@ -128,24 +128,24 @@ function getConsommationEau($id,$dated) {
 // Moyenne consommation Eau des habitations similaires
 // Parameter : (id : identifiant compteur, dated : date de consommation) 
 function getConsommationEaum($id,$dated) {
-    $json_source = file_get_contents('json\jsonEaucompact.json');
-    $json_data = json_decode($json_source, true);
-    $strid=(string)$id;
-    foreach($json_data as $v){
-        if ( $v['id']== $strid){
-            foreach($v['dates'] as $s){
-                if( $s['start']== $dated){
-                  global $valeur;
-                  $valeur = $s['moyenneHabSimilaire'];
-                    }
-           
-                }
-        
-            }
-   
+  $json_source = file_get_contents('json\jsonEaucompact.json');
+  $json_data = json_decode($json_source, true);
+  $strid=(string)$id;
+  foreach($json_data as $v){
+    if ( $v['id']== $strid){
+      foreach($v['dates'] as $s){
+        if( $s['start']== $dated){
+          global $valeur;
+          $valeur = $s['moyenneHabSimilaire'];
         }
-   $intvaleur=(int)$valeur;
-   echo $intvaleur; 
+
+      }
+
+    }
+
+  }
+  $intvaleur=(int)$valeur;
+  echo $intvaleur; 
 }
 
 // Test des fonctions :
@@ -153,220 +153,170 @@ function getConsommationEaum($id,$dated) {
 echo "<br>";
 echo " Consommation Moyenne Elec log similaires :",getConsommationElecm(19800723488459,'01/01/2016');*/
 
+/*
+===========================F O N C T I O N N A L I T E    5 ====================================
+*/
+// BackEnd Fonctionnalité 5 ( définir une prévision en fonction de la consommation au jour J d'un citoyen)
+// getConsommationXJour sont des fonctions qui renvoient des tableaux de taille 3
 
-
-
+// La première case est pour la consommation d'une énergie par jour 
+// La deuxième case est pour la prévision d'une énergie pour la fin du mois actuel 
+// La troisième case est pour l'objectif qui a été défini pour le citoyen    
 
 function getConsommationElecJour($id,$dated,$jour) {
-    $json_source = file_get_contents('http://localhost:3000/electricity_consumption/');
-    $json_data = json_decode($json_source, true);
-    $strid=(string)$id;
-    $valeur=0;
-    $objectif=0;
-    foreach($json_data as $v){
-        if ( $v['id']== $strid){
-            foreach($v['dates'] as $s){
-                if( $s['start']== $dated){
-                    $objectif=$s['objectif'];
-                  $x=1;
-                    foreach($s['daily'] as $c){
-                        for( $i=1; $i<=$jour;$i++){
-                              if($x<=$jour){
-                                 
-                                  
-                                   $valeur = $c["jour$x"] + $valeur;
-                                   $x++;
-                          }
+  $json_source = file_get_contents('http://localhost:3000/electricity_consumption/',$id);
+  $json_data = json_decode($json_source, true);
+  $strid=(string)$id;
+  $valeur=0;
+  $objectif=0;
+  $flag=false;
+  foreach($json_data as $v){
+    if ( $v['id']== $strid){
+      foreach($v['dates'] as $s){
+        if( $s['start']== $dated){
+          $flag=true;
+          $objectif=$s['objectif'];
 
-                     }
-                
-                         }
-                    }
-           
-                }
-        
-            }
-   
+          foreach($s['daily'] as $c){
+            for( $i=1; $i<=$jour;$i++){
 
-        }
+             $valeur = $c["jour".$i] + $valeur;
 
- $intvaleur=(int)$valeur*0.12440;
- $interpolation =  (30 * $intvaleur / $jour)*0.12440;
- $objectif=$objectif*0.12440;
+           }
+
+         }
+
+       }
+     }
+     if($flag==true) break;
+     $iteration++; 
+     echo "iteration".$iteration;  
+
+   }
+
+ }
 
 
-   return array($intvaleur,$interpolation,$objectif);
+
+
+$intvaleur=(int)$valeur*0.12440;
+$interpolation =  (30 * $intvaleur / $jour);
+$objectif=$objectif*0.12440;
+
+
+return array($intvaleur,$interpolation,$objectif);
 }
 
 function getConsommationGazJour($id,$dated,$jour) {
-    $json_source = file_get_contents('http://localhost:3000/gaz_consumption/');
-    $json_data = json_decode($json_source, true);
-    $strid=(string)$id;
-    $valeur=0;
-    $objectif=0;
-    foreach($json_data as $v){
-        if ( $v['id']== $strid){
-            foreach($v['dates'] as $s){
-                if( $s['start']== $dated){
-                  $objectif=$s['objectif'];
-                  $x=1;
-                    foreach($s['daily'] as $c){
-                        for( $i=1; $i<=$jour;$i++){
-                              if($x<=$jour){
-                                 
-                                  
-                                   $valeur = $c["jour$x"] + $valeur;
-                                   $x++;
-                          }
+  $json_source = file_get_contents('http://localhost:3000/gaz_consumption/',$id);
+  $json_data = json_decode($json_source, true);
+  $strid=(string)$id;
+  $valeur=0;
+  $objectif=0;
+  $flag=false;
+  foreach($json_data as $v){
+    if ( $v['id']== $strid){
+      $iteration=0;
+      foreach($v['dates'] as $s){
+        if( $s['start']== $dated){
+          $flag=true;
+          $objectif=$s['objectif'];
 
-                     }
-                
-                         }
-                    }
-           
-                }
-        
-            }
-   
-
-        }
-
-   $intvaleur=(int)$valeur*0.0545;
-  $interpolation =  (30 * $intvaleur / $jour)*0.0545;
-  $objectif=$objectif*0.0545;
+          foreach($s['daily'] as $c){
+            for( $i=1; $i<=$jour;$i++){
 
 
-   return array($intvaleur,$interpolation,$objectif);
+
+             $valeur = $c["jour".$i] + $valeur;
+
+           }
+
+         }
+
+       }
+       if($flag==true) break;
+       $iteration++; 
+       echo "iteration".$iteration;      
+     }
+
+   }       
+ }
+
+
+ $intvaleur=(int)$valeur*0.0545;
+ $interpolation =  (30 * $intvaleur / $jour);
+ $objectif=$objectif*0.0545;
+
+
+ return array($intvaleur,$interpolation,$objectif);
 }
 function getConsommationWaterJour($id,$dated,$jour) {
-    $json_source = file_get_contents('http://localhost:3000/water_consumption/');
-    $json_data = json_decode($json_source, true);
-    $strid=(string)$id;
-    $valeur=0;
-    $objectif=0;
-    foreach($json_data as $v){
-        if ( $v['id']== $strid){
-            foreach($v['dates'] as $s){
-              
-                if( $s['start']== $dated){
-                  $objectif=$s['objectif'];
-                  $x=1;
-                    foreach($s['daily'] as $c){
-                        for( $i=1; $i<=$jour;$i++){
-                              if($x<=$jour){
-                                 
-                                  
-                                   $valeur = $c["jour$x"] + $valeur;
-                                   $x++;
-                          }
+  $json_source = file_get_contents('http://localhost:3000/water_consumption/',$id);
+  $json_data = json_decode($json_source, true);
+  $strid=(string)$id;
+  $valeur=0;
+  $objectif=0;
+  $flag=false;
+  foreach($json_data as $v){
+    if ( $v['id']== $strid){
+      $iteration=0;
+      foreach($v['dates'] as $s){
 
-                     }
-                
-                         }
-                    }
-           
-                }
-        
-            }
-   
+        if( $s['start']== $dated ){
+          $flag=true;
+          $objectif=$s['objectif'];
+          $iteration=0;
+          foreach($s['daily'] as $c){
 
-        }
-       $date = DateTime::createFromFormat("d/m/Y", $dated);
+            for( $i=1; $i<=$jour;$i++){
+
+             $valeur = $c["jour".$i] + $valeur;
+
+
+           }
+
+         }
+
+       }  
+       if($flag==true) break;
+       $iteration++; 
+       echo "iteration".$iteration;     
+     }        
+   }
+
+ }
+      // $date = DateTime::createFromFormat("d/m/Y", $dated);
       /*echo $date->format("d"); //day
       echo $date->format("m"); //month
       echo $date->format("Y"); //year*/
 
 
    // Les valeurs en €   
-   $intvaleur=(int)$valeur*1.4;
-   $interpolation =  (30 * $intvaleur / $jour)*1.4;
-   $objectif=$objectif*1.4;
+      $intvaleur=(int)$valeur*1.4;
+      $interpolation =  (30 * $intvaleur / $jour);
+      $objectif=$objectif*1.4;
 
 
-   return array($intvaleur,$interpolation,$objectif);
-}
-
-/*
-function getObjectifWaterMensuel($id,$dated) {
-    $json_source = file_get_contents('http://localhost:3000/water_consumption/');
-    $json_data = json_decode($json_source, true);
-    $strid=(string)$id;
-    $valeur=0;
-    foreach($json_data as $v){
-        if ( $v['id']== $strid){
-            foreach($v['dates'] as $s){
-              if( $s['start']== $dated){
-                echo $s['objectif'];
-                }
-                }
-        
-            }
-        }
-}*/
-
-/*function getObjectifElecMensuel($id,$dated) {
-    $json_source = file_get_contents('http://localhost:3000/electricity_consumption/');
-    $json_data = json_decode($json_source, true);
-    $strid=(string)$id;
-    $valeur=0;
-    foreach($json_data as $v){
-        if ( $v['id']== $strid){
-            foreach($v['dates'] as $s){
-              if( $s['start']== $dated){
-                echo $s['objectif'];
-                }
-                }
-        
-            }
-        }
-}
-
-
-function getObjectifGazMensuel($id,$dated) {
-    $json_source = file_get_contents('http://localhost:3000/gaz_consumption/');
-    $json_data = json_decode($json_source, true);
-    $strid=(string)$id;
-    $valeur=0;
-    foreach($json_data as $v){
-        if ( $v['id']== $strid){
-            foreach($v['dates'] as $s){
-              if( $s['start']== $dated){
-                echo $s['objectif'];
-                }
-                }
-        
-            }
-        }
-}*/
-
-
-       /* $valeur=0;
-              $x=$jour
-
-              for ($i = 1; $i <= $jour; $i++) {
-                   $valeur = $c["jour$jour"] + $valeur;
-                   $jour=$jour-1;
-                    }*/
+      return array($intvaleur,$interpolation,$objectif);
+    }
 
 
 
-// Prévisions de consommation 
-$previsionWater= getConsommationWaterJour(19800723488459,"01/01/2016",15)[1];
-$previsionElec=getConsommationElecJour(19800723488459,"01/01/2016",15)[1];
-$previsionGaz=getConsommationGazJour(19800723488459,"01/01/2016",15)[1];
-// Objectif de consommation mensuelle pour le citoyen X 
-$objectifElec=getConsommationElecJour(19800723488459,"01/01/2016",15)[2];
-$objectifGaz=getConsommationGazJour(19800723488459,"01/01/2016",15)[2];
-$objectifWater=getConsommationWaterJour(19800723488459,"01/01/2016",15)[2];
-// Consommation journalière pour les 3 énérgies 
-$consoWaterJour=getConsommationWaterJour(19800723488459,"01/01/2016",15)[0];
-$consoElecJour=getConsommationElecJour(19800723488459,"01/01/2016",15)[0];
-$consoGazJour=getConsommationGazJour(19800723488459,"01/01/2016",15)[0];
+// Stockage des 3 tableaux dans 3 variables ( ConsoElecJour, ConsoGazJour et ConsoWaterJour  )             
+    $ConsoElecJour=getConsommationElecJour(19800723488459,"01/01/2016",4);
+    $ConsoGazJour=getConsommationGazJour(19800723488459,"01/01/2016",4);
+    $ConsoWaterJour=getConsommationWaterJour(19800723488459,"01/01/2016",4);
 
-echo $objectifGaz;
-echo $previsionGaz;
-echo $consoGazJour;
+    echo "Water ".$ConsoWaterJour[0]." ".$ConsoWaterJour[1]." ".$ConsoWaterJour[2]."<br>";
+    echo "Gaz  : ".$ConsoGazJour[0]." ".$ConsoGazJour[1]." ".$ConsoGazJour[2]."<br>";
+    echo "Elec :".$ConsoElecJour[0]." ".$ConsoElecJour[1]." ".$ConsoElecJour[2];
 
-   
-   
-?>
+
+
+
+
+// Test une fonction qui fait le boulot des 3 fonctions pour diminuer le temps de traitement ( on fait le parse 3 fois c'est fastidieux)
+
+
+
+    ?>
