@@ -86,10 +86,8 @@ else {
 									<u1><a id="userConnected"><?php echo "Connecté sous : $last_name "?></a></u1>
 									<ul>
 										<li><a id="page_historique">Historique</a></li>
-										
-										<li><a id="page_astuces">Astuces</a></li>
 										<li><a id="page_conso_journaliere">Consommation journalière</a></li>
-										<li><a id="page_comparaison">Répartition de consommations</a></li>
+										<li><a id="page_comparaison">Répartition des consommations</a></li>
 										<li>
 											<span class="opener">Paramètres</span>
 											<ul>

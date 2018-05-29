@@ -15,10 +15,10 @@
 <article id="legende_navigation">
 	<section id="legende">
 		<h2>Légende</h2>
-		<p>Comparaison mois par mois par rapport aux habitations de même type :</p>
-		<img src="images/button-red.png" height="15" width="15"><span>Supérieure d'au moins 15%</span><br/>
-		<img src="images/button-orange.png" height="15" width="15"><span>Supérieure de 5 à 15%</span><br/>
-		<img src="images/button-green.png" height="15" width="15"><span>Inférieure ou égale (à 5% près)</span>
+		<p>Ce tableau récapitule vos consommations en € pour une année.<br/>Le code couleur se rapporte à votre consommation par rapport à la moyenne des consommations des habitations de même type que la vôtre :</p>
+		<img src="images/button-red.png" height="15" width="15"><span>Consommation supérieure d'au moins 15%</span><br/>
+		<img src="images/button-orange.png" height="15" width="15"><span>Consommation supérieure de 5 à 15%</span><br/>
+		<img src="images/button-green.png" height="15" width="15"><span>Consommation inférieure ou égale (à 5% près)</span>
 	</section>
 	<section id="navigation">
 		<h3>
@@ -41,11 +41,11 @@
 		</thead>
 		<tbody>
 	      	<tr class="water">
-				<td class="energyType">Electricité<!--<img src="images/warning.png" width="20" height="20">--></td>
+				<td class="energyType">Eau<!--<img src="images/warning.png" width="20" height="20">--></td>
 				<td class="valueClone"></td>
 			</tr>
 	      	<tr class="electricity">
-				<td class="energyType">Eau</td>
+				<td class="energyType">Electricité</td>
 				<td class="valueClone"></td>
 			</tr>
 			<tr class="gas">

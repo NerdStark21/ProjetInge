@@ -2,14 +2,11 @@
 // ############## Changement de page ########### //
 // ############################################# //
 
-$("#page_historique, #page_astuces, #page_comparaison, #page_infos, #page_conso_journaliere").click(function(event){
+$("#page_historique, #page_comparaison, #page_infos, #page_conso_journaliere").click(function(event){
   let newPage = "error";
   switch(event.target.id){
     case "page_historique":
     newPage = "historique.php";
-    break;
-    case "page_astuces":
-    newPage = "astuces.php";
     break;
     case "page_comparaison":
     newPage = "comparaison.php";
@@ -73,17 +70,6 @@ Permet le changement de page en requète AJAX
 
 // req.open('GET', 'index.php', true);
 // req.send(null);
-
-
-
-
-
-
-
-
-
-
-
 
 // Liste des mois de l'année (pour affichage)
 let listMonth = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
@@ -150,7 +136,7 @@ let listConsoCompare = { 2016 : listConsoCompare2016,
 // Tous les types d'énergie
 let energyType = ["water", "electricity", "gas"];
 // Année actuelle
-let annee = 2017, lastYear = 2018;
+let annee = 2017, lastYear = 2017;
 let tab = [];
 
 
@@ -254,6 +240,8 @@ $(document).ready(function (){
   function affichageWarnings(){
     if(annee == lastYear){
       for(energy of energyType){
+        console.log(energy);
+        console.log($("article#historique").find("tbody").find("tr."+energy).find('td[class~="value"]:last').attr("class"));
         if($("article#historique").find("tbody").find("tr."+energy).find('td[class~="value"]:last').attr("class") == "red value"){
           affichageWarning(energy);
         }
@@ -267,7 +255,6 @@ $(document).ready(function (){
   energy => le type d'énergie sur lequel on doit mettre le warning
   */
   function affichageWarning(energy){
-    console.log("warning");
     var ligne = $("article#historique").find("tbody").find("tr."+energy).find("td:first");
     var img = $("<img></img>");
     img.attr("src", "images/warning.png");
@@ -275,19 +262,17 @@ $(document).ready(function (){
     img.attr("height", "20");
     img.attr("title", "Cliquez ici pour voir des astuces pour réduire votre consommation")
     img.addClass("warning");
+    img.addClass(energy);
     ligne.append(img);
   }
-
-  
 });
 
 $("article#historique").on("click", ".warning", function(event){
-
   $.ajax({
-     url : astuces.php,
+     url : "astuces.php",
      type : 'GET',
      dataType : 'html',
-     data : "",
+     data : "energy="+$(this).attr("class").substr(8, $(this).attr("class").length),
      success : function(code_html, statut){
       $("#body").empty();
           $(code_html).appendTo("#body"); // On passe code_html à jQuery() qui va nous créer l'arbre DOM !
@@ -384,7 +369,7 @@ $("#flags").on("click", ".flag", function(event){
   article.children().remove();
   $("<span></span>").appendTo(article);
   $("<ul></ul>").appendTo(article);
-  let txt = "Voici la liste de tous les marqueurs que vous avez mis pour le mois de ";
+  let txt = "Voici la liste de tous les changements que vous avez enregistré pour le mois de ";
   article.find("span").text(txt+month.toLowerCase()+" :");
   let action, datestr, date;
   let flag = listFlag[annee][month];
@@ -412,6 +397,7 @@ $("#ajoutflag").on("click", ".ajout", function ouvrir(){
   button1.addClass("confirm");
   button1.text("Ajouter");
   button2.addClass("annuler");
+  button2.attr("title", "");
   button2.text("Annuler");
   $("#form").find("#ajoutflag").append(button1);
   $("#form").find("#ajoutflag").append(button2);
@@ -424,6 +410,7 @@ function close(){
   var button = $("#form").find(".annuler").clone();
   button.removeClass("annuler");
   button.addClass("ajout");
+  button.attr("title", "Grâce à ce bouton, vous pouvez enregistrer les différents travaux de votre habitation");
   button.text("Ajout d'un marqueur");
   $("#ajoutflag").append(button);
   $("#ajoutflag").find(".annuler").remove();
@@ -435,10 +422,12 @@ $("#ajoutflag").on("click", ".annuler", function annuler(){
   close();
 });
 
-// Bouton "Ajout" du formulaire
+// Bouton "Ajouter" du formulaire
 $("#ajoutflag").on("click", ".confirm", function confirm(){
   var date = $("#form_ajax").find("#date").val();
   var modification = $("#form_ajax").find("#modification").val();
+  console.log(date);
+  console.log(modification);
   if(date != "" && modification != ""){
     date = new Date(date);
     listFlag[annee][listMonth[date.getMonth()]]["date"].push($("#form_ajax").find("#date").val());
@@ -455,11 +444,30 @@ $("#ajoutflag").on("click", ".confirm", function confirm(){
 // ##################################################### //
 
 function create_select(element, id){
-  var select = $("<option></option>");
-  select.addClass("select");
-  select.attr("value", element);
-  select.text(element);
-  $("#interval").find("select#"+id).append(select);
+  if(id=="energy"){
+    var select = $("<option></option>");
+    select.addClass("select");
+    select.attr("value", element);
+    switch(element){
+      case "water":
+      select.text("eau");
+      break;
+      case "electricity":
+      select.text("électricité");
+      break;
+      case "gas":
+      select.text("gaz");
+      break;
+    }
+    $("#interval").find("select#"+id).append(select);
+  }
+  else{
+    var select = $("<option></option>");
+    select.addClass("select");
+    select.attr("value", element);
+    select.text(element);
+    $("#interval").find("select#"+id).append(select);
+  }
 }
 
 function creation_formulaire(){
