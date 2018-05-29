@@ -2,7 +2,7 @@
 
 // Fonction qui permet d'afficher l'historique de consommation pour une date donnée 
 
-function getConsommationElecYear($id,$annee) {
+function getConsommationYear($id,$annee) {
     $json_sourceElec = file_get_contents('http://localhost:3000/db');
     /*$json_sourceGaz = file_get_contents('http://localhost:3000/gaz_consumption');
     $json_sourceWater = file_get_contents('http://localhost:3000/water_consumption/');*/
@@ -64,7 +64,7 @@ function getConsommationElecYear($id,$annee) {
 
 
 // donnée 2016 à modifier apres
-echo json_encode(getConsommationElecYear(19800723488459,"2016"));
+echo json_encode(getConsommationYear(19800723488459,"2016"));
 
    
    

@@ -87,14 +87,14 @@ let listConso2018 = {"water" : [20, 20, 19, 20, 21, 22, 21, 20, 21, 20, 19, 19],
                   */
 
 
-                  let  listConso2017  = $.parseJSON($.ajax({
+                  let  listConso2016  = $.parseJSON($.ajax({
                     url:  'function1.php',
                     dataType: "json", 
                     async: false,
 
     }).responseText); // This will wait until you get a response from the ajax request.
                   ;
-                  let  listConso2016  = $.parseJSON($.ajax({
+                  let  listConso2017  = $.parseJSON($.ajax({
                     url:  'function2.php',
                     dataType: "json", 
                     async: false,
