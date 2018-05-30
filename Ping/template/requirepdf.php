@@ -14,7 +14,7 @@ $mois = date('m');
 	foreach($json_data_elec as $v){
 
 		foreach($v['dates'] as $s){
-			if( $s['start']== "01/".$mois."/2016" ){
+			if( $s['start']== "01/01/2016" ){
 
 				$money[0] = round($s['value']*0.14670,2);}
 			}
@@ -23,7 +23,7 @@ $mois = date('m');
 	foreach($json_data_gaz as $v){
 
 		foreach($v['dates'] as $s){
-			if( $s['start']== "01/".$mois."/2016" ){
+			if( $s['start']== "01/01/2016" ){
 
 				$money[2] = round($s['value']*0.0545,2);}
 			}
@@ -34,9 +34,9 @@ $mois = date('m');
 
 			foreach($v['dates'] as $s){
 
-				if( $s['start']== "01/".$mois."/2016" ){
+				if( $s['start']== "01/01/2016" ){
 
-					$money[1] = round($s['value']*1,4,2);
+					$money[1] = round($s['value']*1.4,2);
 				}
 			}  
 		}

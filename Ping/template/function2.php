@@ -21,7 +21,7 @@ function getConsommationElecYear($id,$annee) {
           if( $annee==  strftime("%Y", strtotime($s['start']) )) {
                 //array_push($tab,[ "water" => strftime("%d", strtotime($s['start'])), "electricity" => $s['value']], "gaz" => 1 );
                //array_push($tabWater, [  strftime("%d", strtotime($s['start']) ) ]);
-               array_push($tabElec,  round($s['value']*0.12440) ) ; 
+               array_push($tabElec,  round($s['value']*0.14670) ) ; 
                //array_push($tabGaz, [ 1 ] );
           }                 
                     }          
