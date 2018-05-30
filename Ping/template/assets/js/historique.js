@@ -98,6 +98,12 @@ let listConso2018 = {"water" : [20, 20, 19, 20, 21, 22, 21, 20, 21, 20, 19, 19],
 
     }).responseText); // This will wait until you get a response from the ajax request.
 
+                      let  listConso2018  = $.parseJSON($.ajax({
+                    url:  'function5.php',
+                    dataType: "json", 
+                    async: false,
+
+    }).responseText); 
 
                   let  listConsoCompare2016  = $.parseJSON($.ajax({
                     url:  'function3.php',
@@ -113,6 +119,12 @@ let listConso2018 = {"water" : [20, 20, 19, 20, 21, 22, 21, 20, 21, 20, 19, 19],
 
     }).responseText); // This will wait until you get a response from the ajax request.
 
+                   let  listConsoCompare2018  = $.parseJSON($.ajax({
+                    url:  'function6.php',
+                    dataType: "json", 
+                    async: false,
+
+    }).responseText); 
 
 
 /*let listConsoCompare2018 = {"water" : [25, 26, 27, 28, 32, 30, 31, 32, 33, 34, 35, 36],
@@ -122,18 +134,19 @@ let listConso2018 = {"water" : [20, 20, 19, 20, 21, 22, 21, 20, 21, 20, 19, 19],
 // Dictionnaire des listes de consommations d'énergie de l'habitation
 let listConso = {     
   2016 : listConso2016,
-  2017 : listConso2017
+  2017 : listConso2017,
+  2018 : listConso2018
 };
 
 // Dictionnaire des consommations des habitations de mêmes types
 let listConsoCompare = { 2016 : listConsoCompare2016,
-  2017 : listConsoCompare2017, 
+  2017 : listConsoCompare2017, 2018:listConsoCompare2018
 };
 
 // Tous les types d'énergie
 let energyType = ["water", "electricity", "gas"];
 // Année actuelle
-let annee = 2017, lastYear = 2017;
+let annee = 2018, lastYear = 2018;
 let tab = [];
 
 
@@ -141,7 +154,7 @@ let tab = [];
 $(document).ready(function (){
   // Pour afficher tous les mois dans le tableau
 
-  let annee = 2017;
+  let annee = 2018;
   viderTableau();
   remplirTableau(listConso[annee], listConsoCompare[annee]);
   for(let k=0; k<12;k++){
@@ -183,6 +196,7 @@ $(document).ready(function (){
         remplirLigne(energyType[j], listConsoYear, listCompareYear);
       }
       affichageWarnings();
+      
     }
 
   /*
@@ -226,6 +240,7 @@ $(document).ready(function (){
     $('tr td[class~="value"]').remove();
     $('tr td[class~="empty"]').remove();
     let txt = $("article#historique").find("tbody").find("img").remove();
+
   }
 
   /*
@@ -284,7 +299,7 @@ $("article#historique").on("click", ".warning", function(event){
 
 // C'est les dates anglo-saxones Mois/Jour/Année
 let listFlag = new Object;
-let listYear = ["2016", "2017"];
+let listYear = ["2016", "2017","2018"];
 for(year of listYear){
   listFlag[year] = new Object;
   for(month of listMonth){
@@ -293,14 +308,16 @@ for(year of listYear){
     listFlag[year][month]["action"] = [];
   }
 }
-listFlag["2017"]["Janvier"]["date"].push("01/01/2017");
-listFlag["2017"]["Janvier"]["action"].push("changer le radiateur");
+
+listFlag["2018"]["Janvier"]["date"].push("01/01/2017");
+listFlag["2018"]["Janvier"]["action"].push("changer le radiateur");
 listFlag["2016"]["Février"]["date"].push("02/01/2016");
 listFlag["2016"]["Février"]["action"].push("manger le chat");
 listFlag["2017"]["Mars"]["date"].push("03/21/2017");
 listFlag["2017"]["Mars"]["action"].push("manger le chien");
 listFlag["2017"]["Mars"]["date"].push("03/23/2017");
 listFlag["2017"]["Mars"]["action"].push("manger");
+
 
 /*
 Fait afficher tous les marqueurs de l'utilisateur (appel : afficherFlag)
