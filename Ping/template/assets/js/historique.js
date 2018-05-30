@@ -312,7 +312,7 @@ Fait afficher tous les marqueurs de l'utilisateur (appel : afficherFlag)
     let listAction = listFlag[annee];
     let first = true;
     let compteur = 0, date;
-    let ecart = 72;
+    let ecart = 8;
     for(month of listMonth){
       if(listAction[month]["date"].length == 0){
         compteur ++;
@@ -321,7 +321,7 @@ Fait afficher tous les marqueurs de l'utilisateur (appel : afficherFlag)
         console.log("month : "+month);
         date = new Date(listAction[month]["date"]);
         console.log("compteur : "+compteur);
-        if(first){afficherFlag(date, 82+compteur*ecart, month); first = false;}
+        if(first){afficherFlag(date, 7.69+compteur*ecart, month); first = false;}
         else{afficherFlag(date, compteur*ecart, month);}
         compteur = 0;
       }
@@ -343,7 +343,7 @@ Fait afficher un marqueur de l'utilisateur
     clone.addClass("flag");
     clone.find("span").text(month); //indice du tableau que l'on utilise
     clone.find("img").addClass("msg".concat(date.getMonth()));
-    clone.css('margin-left', ''.concat(margin+"px"));
+    clone.css('margin-left', ''.concat(margin+"%"));
     clone.attr("title", "Cliquez pour avoir le détail");
     clone.find("img").attr("title", "Cliquez pour avoir le détail");
     $("#flags").append(clone);
