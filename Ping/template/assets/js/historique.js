@@ -20,8 +20,6 @@ $("#page_historique, #page_comparaison, #page_infos, #page_conso_journaliere").c
     default:
     console.log("Vous avez mal renseigné le chemin de la page ciblée !");
   }
-  console.log("newPage");
-
   actualisation(newPage);
 });
 
@@ -31,7 +29,6 @@ Permet le changement de page en requète AJAX
   newPage : nom+extension de la page cible (pas URL)
   */
   function actualisation(newPage){
-    console.log(newPage);
     $.ajax({
      url : newPage,
      type : 'GET',
@@ -159,8 +156,6 @@ $(document).ready(function (){
   Permet le changement d'année dans le tableau
   */
   $("#nextYear, #previousYear").click(function(event){
-    console.log(annee);
-    console.log(lastYear);
     if(event.target.id == "nextYear" && annee + 1 <= lastYear){
       annee += 1;
       viderTableau();
@@ -198,7 +193,6 @@ $(document).ready(function (){
     listCompareYear => liste des conso des habitations de même type à l'année voulue
     */
     function remplirLigne(energy, listConsoYear, listCompareYear){
-      console.log(listConsoYear);
       for(k=0;k<listConsoYear[energy].length;k++){
         let clone = $(".".concat(energy)).find(".valueClone").clone();
         clone.removeClass("valueClone");
@@ -240,8 +234,6 @@ $(document).ready(function (){
   function affichageWarnings(){
     if(annee == lastYear){
       for(energy of energyType){
-        console.log(energy);
-        console.log($("article#historique").find("tbody").find("tr."+energy).find('td[class~="value"]:last').attr("class"));
         if($("article#historique").find("tbody").find("tr."+energy).find('td[class~="value"]:last').attr("class") == "red value"){
           affichageWarning(energy);
         }
@@ -316,21 +308,22 @@ Fait afficher tous les marqueurs de l'utilisateur (appel : afficherFlag)
   listFlag : liste de tous les marqueurs de l'utilisateur
   */
   function afficherFlags(listFlag){
+    console.log("EXEC");
     let listAction = listFlag[annee];
     let first = true;
     let compteur = 0, date;
-    let ecart = 0.25;
+    let ecart = 72;
     for(month of listMonth){
       if(listAction[month]["date"].length == 0){
         compteur ++;
       }
       else{
-        console.log(month);
+        console.log("month : "+month);
         date = new Date(listAction[month]["date"]);
-        console.log(compteur);
-        if(first){afficherFlag(date, 7.5+compteur*ecart, month); first = false;}
+        console.log("compteur : "+compteur);
+        if(first){afficherFlag(date, 82+compteur*ecart, month); first = false;}
         else{afficherFlag(date, compteur*ecart, month);}
-        compteur = 1;
+        compteur = 0;
       }
     }
   }
@@ -343,17 +336,17 @@ Fait afficher un marqueur de l'utilisateur
   month : mois associé au marqueur
   */
   function afficherFlag(date, margin, month){
+    console.log("margin : "+margin);
     let clone = $("#flags").find(".flagClone").clone();
     clone.removeClass("flagClone");
     clone.addClass("msg".concat(date.getMonth()));
     clone.addClass("flag");
-  clone.find("span").text(month); //indice du tableau que l'on utilise
-  clone.find("img").addClass("msg".concat(date.getMonth()));
-  clone.css('margin-left', ''.concat(margin+"%"));
-  clone.attr("title", "Cliquez pour avoir le détail");
-  clone.find("img").attr("title", "Cliquez pour avoir le détail");
-  $("#flags").append(clone);
-  console.log(margin);
+    clone.find("span").text(month); //indice du tableau que l'on utilise
+    clone.find("img").addClass("msg".concat(date.getMonth()));
+    clone.css('margin-left', ''.concat(margin+"px"));
+    clone.attr("title", "Cliquez pour avoir le détail");
+    clone.find("img").attr("title", "Cliquez pour avoir le détail");
+    $("#flags").append(clone);
 }
 
 /* Pour rechercher toutes les flags correspondant à ce mois
@@ -426,8 +419,6 @@ $("#ajoutflag").on("click", ".annuler", function annuler(){
 $("#ajoutflag").on("click", ".confirm", function confirm(){
   var date = $("#form_ajax").find("#date").val();
   var modification = $("#form_ajax").find("#modification").val();
-  console.log(date);
-  console.log(modification);
   if(date != "" && modification != ""){
     date = new Date(date);
     listFlag[annee][listMonth[date.getMonth()]]["date"].push($("#form_ajax").find("#date").val());
