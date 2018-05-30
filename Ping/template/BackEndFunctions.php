@@ -31,7 +31,7 @@ function getConsommationElec($id,$dated) {
 // Moyenne Consommation Electricité des habitations similaires
 // Parameter : (id : identifiant compteur, dated : date de consommation) 
 function getConsommationElecm($id,$dated) {
-  $json_source = file_get_contents('http://localhost:3000/electricity_consumption');
+  $json_source = file_get_contents('json\jsonEleccompact.json');
   $json_data = json_decode($json_source, true);
   $strid=(string)$id;
   foreach($json_data as $v){
@@ -54,7 +54,7 @@ function getConsommationElecm($id,$dated) {
 // Moyenne Consommation Gaz  
 // Parameter : (id : identifiant compteur, dated : date de consommation) 
 function getConsommationGaz($id,$dated) {
-  $json_source = file_get_contents('http://localhost:3000/gaz_consumption');
+  $json_source = file_get_contents('json\jsonGazcompact.json');
   $json_data = json_decode($json_source, true);
   $strid=(string)$id;
   foreach($json_data as $v){
@@ -80,7 +80,7 @@ function getConsommationGaz($id,$dated) {
 // Moyenne Consommation Gaz des habitations similaires
 // Parameter : (id : identifiant compteur, dated : date de consommation) 
 function getConsommationGazm($id,$dated) {
-  $json_source = file_get_contents('http://localhost:3000/gaz_consumption');
+  $json_source = file_get_contents('json\jsonGazcompact.json');
   $json_data = json_decode($json_source, true);
   $strid=(string)$id;
   foreach($json_data as $v){
@@ -102,7 +102,7 @@ function getConsommationGazm($id,$dated) {
 // Moyenne Consommation Eau  
 // Parameter : (id : identifiant compteur, dated : date de consommation) 
 function getConsommationEau($id,$dated) {
-  $json_source = file_get_contents('http://localhost:3000/water_consumption');
+  $json_source = file_get_contents('json\jsonEaucompact.json');
   $json_data = json_decode($json_source, true);
   $strid=(string)$id;
   foreach($json_data as $v){
@@ -128,7 +128,7 @@ function getConsommationEau($id,$dated) {
 // Moyenne consommation Eau des habitations similaires
 // Parameter : (id : identifiant compteur, dated : date de consommation) 
 function getConsommationEaum($id,$dated) {
-  $json_source = file_get_contents('http://localhost:3000/water_consumption');
+  $json_source = file_get_contents('json\jsonEaucompact.json');
   $json_data = json_decode($json_source, true);
   $strid=(string)$id;
   foreach($json_data as $v){
@@ -144,8 +144,8 @@ function getConsommationEaum($id,$dated) {
     }
 
   }
-  $intvaleur=(int)$valeur*1.4;
-  return $intvaleur; 
+  $intvaleur=(int)$valeur;
+  echo $intvaleur; 
 }
 
 // Test des fonctions :
