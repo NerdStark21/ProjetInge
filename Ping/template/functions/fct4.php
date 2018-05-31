@@ -137,9 +137,9 @@ for($i=0;$i<sizeof($tabConsommation);$i++){
 function percentageOf( $number, $totalConsommations, $decimals = 2 ){
     return round( $number / $totalConsommations * 100, $decimals );
 }
-  echo "En deux ans vous avez payé :  Elec : ".$totalElec."€ Gaz : ".$totalGaz."€ Eau :".$totalEau." Total que vous avez payé :  ".$totalConsommations."€ <br> Vos voisins ont payé : Elec ".$totalElecSimilaire."€ Gaz :".$totalGazSimilaire." Eau :".$totalEauSimilaire." Total qu'ils ont payé : ".$totalConsommationsSimilaire."€ <br>" ;
+/*  echo "En deux ans vous avez payé :  Elec : ".$totalElec."€ Gaz : ".$totalGaz."€ Eau :".$totalEau." Total que vous avez payé :  ".$totalConsommations."€ <br> Vos voisins ont payé : Elec ".$totalElecSimilaire."€ Gaz :".$totalGazSimilaire." Eau :".$totalEauSimilaire." Total qu'ils ont payé : ".$totalConsommationsSimilaire."€ <br>" ;
 
-  echo " Percent Utilisateur Elec : ".$PercentElecUtilisateur."% Gaz :".$PercentGazUtilisateur."% Eau :".$PercentEauUtilisateur."% <br> Percent Log Similaire Elec : ".$PercentElecSimilaire."% Gaz :".$PercentGazSimilaire."% Eau : ".$PercentEauSimilaire."% ";
+  echo " Percent Utilisateur Elec : ".$PercentElecUtilisateur."% Gaz :".$PercentGazUtilisateur."% Eau :".$PercentEauUtilisateur."% <br> Percent Log Similaire Elec : ".$PercentElecSimilaire."% Gaz :".$PercentGazSimilaire."% Eau : ".$PercentEauSimilaire."% ";*/
 
 
 ?>

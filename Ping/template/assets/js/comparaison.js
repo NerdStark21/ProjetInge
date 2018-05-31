@@ -113,6 +113,7 @@ function repartitionEnergies(valUtilElec, valUtilGaz, valUtilEau, valLogElec, va
 			/* !!!!!! FIN AFFICHAGE DU TEXTE DES LEGENDES !!!!!!! */
 	}
 	/* !!!!!! FIN AFFICHAGE LEGENDES SUR LES COTES DES DIAGRAMMES !!!!!!! */
+		 
 }		    
 
-repartitionEnergies(50, 40.2, 9.8, 50, 24.5, 25.5, 130, 90, "rgb(28,148,255)", "rgb(255,140,0)", "rgb(1,186,186)", "15", 30, "20");
+/*repartitionEnergies(50, 40.2, 9.8, 50, 24.5, 25.5, 130, 90, "rgb(28,148,255)", "rgb(255,140,0)", "rgb(1,186,186)", "15", 30, "20");*/

@@ -85,42 +85,42 @@ let listConso2018 = {"water" : [20, 20, 19, 20, 21, 22, 21, 20, 21, 20, 19, 19],
 
 
                   let  listConso2016  = $.parseJSON($.ajax({
-                    url:  'function1.php',
+                    url:  'functions/function1.php',
                     dataType: "json", 
                     async: false,
 
     }).responseText); // This will wait until you get a response from the ajax request.
                   ;
                   let  listConso2017  = $.parseJSON($.ajax({
-                    url:  'function2.php',
+                    url:  'functions/function2.php',
                     dataType: "json", 
                     async: false,
 
     }).responseText); // This will wait until you get a response from the ajax request.
 
                       let  listConso2018  = $.parseJSON($.ajax({
-                    url:  'function5.php',
+                    url:  'functions/function5.php',
                     dataType: "json", 
                     async: false,
 
     }).responseText); 
 
                   let  listConsoCompare2016  = $.parseJSON($.ajax({
-                    url:  'function3.php',
+                    url:  'functions/function3.php',
                     dataType: "json", 
                     async: false,
 
     }).responseText); // This will wait until you get a response from the ajax request.
 
                   let  listConsoCompare2017  = $.parseJSON($.ajax({
-                    url:  'function4.php',
+                    url:  'functions/function4.php',
                     dataType: "json", 
                     async: false,
 
     }).responseText); // This will wait until you get a response from the ajax request.
 
                    let  listConsoCompare2018  = $.parseJSON($.ajax({
-                    url:  'function6.php',
+                    url:  'functions/function6.php',
                     dataType: "json", 
                     async: false,
 
