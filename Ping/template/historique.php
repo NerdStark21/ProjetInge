@@ -3,14 +3,6 @@
 	<h2>Historique de consommation à l'année</h2>
 </header>
 
-<aside id="form">
-	<div id="form_ajax">
-		<!-- C'est ici qu'on va faire apparaitre la boite de dialogue pour que l'utilisateur rentre les infos pour le rajout d'un marqueur -->
-	</div>
-	<div id="ajoutflag">
-       	<span class="button ajout" title="Grâce à ce bouton, vous pouvez enregistrer les différents travaux de votre habitation">Ajout d'un marqueur</span>
-    </div>
-</aside>
 
 <article id="legende_navigation">
 	<section id="legende">
@@ -20,14 +12,23 @@
 		<img src="images/button-orange.png" height="15" width="15"><span>Consommation supérieure de 5 à 15%</span><br/>
 		<img src="images/button-green.png" height="15" width="15"><span>Consommation inférieure ou égale (à 5% près)</span>
 	</section>
-	<section id="navigation">
-		<h3>
-			<img id="previousYear" src="images/fleche_gauche.png" alt="Fleche" height="15" width="15">
-			<span id="year"></span>
-			<img id="nextYear" src="images/fleche_droite.png" alt="Fleche" height="15" width="15">
-		</h3>
-	</section>
+	<aside id="form">
+		<div id="form_ajax">
+			<!-- C'est ici qu'on va faire apparaitre la boite de dialogue pour que l'utilisateur rentre les infos pour le rajout d'un marqueur -->
+		</div>
+		<div id="ajoutflag">
+	       	<span class="button ajout" title="Grâce à ce bouton, vous pouvez enregistrer les différents travaux de votre habitation">Ajout d'un marqueur</span>
+	    </div>
+	</aside>
 </article>
+
+<section id="navigation">
+	<h3>
+		<img id="previousYear" src="images/fleche_gauche.png" alt="Fleche" height="15" width="15">
+		<span id="year"></span>
+		<img id="nextYear" src="images/fleche_droite.png" alt="Fleche" height="15" width="15">
+	</h3>
+</section>
 
 <div class="clear"></div>
 
