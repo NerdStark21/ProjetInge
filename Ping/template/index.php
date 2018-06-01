@@ -88,6 +88,7 @@ else {
 										<li><a id="page_historique">Historique</a></li>
 										<li><a id="page_conso_journaliere">Consommation journalière</a></li>
 										<li><a id="page_comparaison">Répartition des consommations</a></li>
+										<li><a id="page_pdf">Publication PDF</a></li>
 										<li>
 											<span class="opener">Paramètres</span>
 											<ul>
