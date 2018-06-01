@@ -1,4 +1,3 @@
-
 <?php 
 	//header("Content-type: text/html; charset=utf-8");
 require_once './api/api_data_elec.php';
@@ -82,6 +81,6 @@ $mois = date('m/Y');
 	$pdf->Cell(59   ,8,$money[1],1,1);
 	$pdf->Cell(130  ,8,$energies[2],1,0);
 	$pdf->Cell(59   ,8,$money[2],1,1);
-	$pdf->Output(); 
+	$pdf->Output('D', "consommation_".$mois.".pdf"); 
 
 	?> 
