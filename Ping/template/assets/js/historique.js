@@ -84,47 +84,41 @@ let listConso2018 = {"water" : [20, 20, 19, 20, 21, 22, 21, 20, 21, 20, 19, 19],
                   */
 
 
-                  let  listConso2016  = $.parseJSON($.ajax({
-                    url:  'functions/function1.php',
-                    dataType: "json", 
-                    async: false,
+let  listConso2016  = $.parseJSON($.ajax({
+  url:  'functions/function1.php',
+  dataType: "json", 
+  async: false,
+}).responseText); // This will wait until you get a response from the ajax request.
 
-    }).responseText); // This will wait until you get a response from the ajax request.
-                  ;
-                  let  listConso2017  = $.parseJSON($.ajax({
-                    url:  'functions/function2.php',
-                    dataType: "json", 
-                    async: false,
+let  listConso2017  = $.parseJSON($.ajax({
+  url:  'functions/function2.php',
+  dataType: "json", 
+  async: false,
+}).responseText); // This will wait until you get a response from the ajax request.
 
-    }).responseText); // This will wait until you get a response from the ajax request.
+let  listConso2018  = $.parseJSON($.ajax({
+  url:  'functions/function5.php',
+  dataType: "json", 
+  async: false,
+}).responseText); 
 
-                      let  listConso2018  = $.parseJSON($.ajax({
-                    url:  'functions/function5.php',
-                    dataType: "json", 
-                    async: false,
+let  listConsoCompare2016  = $.parseJSON($.ajax({
+  url:  'functions/function3.php',
+  dataType: "json", 
+  async: false,
+}).responseText); // This will wait until you get a response from the ajax request.
 
-    }).responseText); 
+let  listConsoCompare2017  = $.parseJSON($.ajax({
+  url:  'functions/function4.php',
+  dataType: "json", 
+  async: false,
+}).responseText); // This will wait until you get a response from the ajax request.
 
-                  let  listConsoCompare2016  = $.parseJSON($.ajax({
-                    url:  'functions/function3.php',
-                    dataType: "json", 
-                    async: false,
-
-    }).responseText); // This will wait until you get a response from the ajax request.
-
-                  let  listConsoCompare2017  = $.parseJSON($.ajax({
-                    url:  'functions/function4.php',
-                    dataType: "json", 
-                    async: false,
-
-    }).responseText); // This will wait until you get a response from the ajax request.
-
-                   let  listConsoCompare2018  = $.parseJSON($.ajax({
-                    url:  'functions/function6.php',
-                    dataType: "json", 
-                    async: false,
-
-    }).responseText); 
+let  listConsoCompare2018  = $.parseJSON($.ajax({
+  url:  'functions/function6.php',
+  dataType: "json", 
+  async: false,
+}).responseText); 
 
 
 /*let listConsoCompare2018 = {"water" : [25, 26, 27, 28, 32, 30, 31, 32, 33, 34, 35, 36],
@@ -143,18 +137,37 @@ let listConsoCompare = { 2016 : listConsoCompare2016,
   2017 : listConsoCompare2017, 2018:listConsoCompare2018
 };
 
+// C'est les dates anglo-saxones Mois/Jour/Année
+let listFlag = new Object;
+let listYear = ["2016", "2017","2018"];
+for(year of listYear){
+  listFlag[year] = new Object;
+  for(month of listMonth){
+    listFlag[year][month] = new Object;
+    listFlag[year][month]["date"] = [];
+    listFlag[year][month]["action"] = [];
+  }
+}
+
+listFlag["2018"]["Janvier"]["date"].push("01/01/2017");
+listFlag["2018"]["Janvier"]["action"].push("changer le radiateur");
+listFlag["2016"]["Février"]["date"].push("02/01/2016");
+listFlag["2016"]["Février"]["action"].push("manger le chat");
+listFlag["2017"]["Mars"]["date"].push("03/21/2017");
+listFlag["2017"]["Mars"]["action"].push("manger le chien");
+listFlag["2017"]["Mars"]["date"].push("03/23/2017");
+listFlag["2017"]["Mars"]["action"].push("manger");
+
 // Tous les types d'énergie
 let energyType = ["water", "electricity", "gas"];
 // Année actuelle
 let annee = 2018, lastYear = 2018;
 let tab = [];
 
-
-
 $(document).ready(function (){
   // Pour afficher tous les mois dans le tableau
 
-  let annee = 2018;
+  annee = 2018;
   viderTableau();
   remplirTableau(listConso[annee], listConsoCompare[annee]);
   for(let k=0; k<12;k++){
@@ -179,6 +192,7 @@ $(document).ready(function (){
       viderTableau();
       remplirTableau(listConso[annee], listConsoCompare[annee]);
     }
+    console.log("annee actualisée : "+annee)
   });
 
 
@@ -196,7 +210,7 @@ $(document).ready(function (){
         remplirLigne(energyType[j], listConsoYear, listCompareYear);
       }
       affichageWarnings();
-      
+      afficherFlags(listFlag);
     }
 
   /*
@@ -239,8 +253,9 @@ $(document).ready(function (){
     // Tous les td qui contiennent au moins la classe "value"
     $('tr td[class~="value"]').remove();
     $('tr td[class~="empty"]').remove();
-    let txt = $("article#historique").find("tbody").find("img").remove();
-
+    $("article#historique").find("tbody").find("img").remove();
+    $("article#historique").find("div#flags").find("div:not(.flagClone)").remove();
+    $("article#msg").find("span, ul").remove();
   }
 
   /*
@@ -297,39 +312,20 @@ $("article#historique").on("click", ".warning", function(event){
 // ########### Affichage des marqueurs ########### //
 // ############################################### //
 
-// C'est les dates anglo-saxones Mois/Jour/Année
-let listFlag = new Object;
-let listYear = ["2016", "2017","2018"];
-for(year of listYear){
-  listFlag[year] = new Object;
-  for(month of listMonth){
-    listFlag[year][month] = new Object;
-    listFlag[year][month]["date"] = [];
-    listFlag[year][month]["action"] = [];
-  }
-}
-
-listFlag["2018"]["Janvier"]["date"].push("01/01/2017");
-listFlag["2018"]["Janvier"]["action"].push("changer le radiateur");
-listFlag["2016"]["Février"]["date"].push("02/01/2016");
-listFlag["2016"]["Février"]["action"].push("manger le chat");
-listFlag["2017"]["Mars"]["date"].push("03/21/2017");
-listFlag["2017"]["Mars"]["action"].push("manger le chien");
-listFlag["2017"]["Mars"]["date"].push("03/23/2017");
-listFlag["2017"]["Mars"]["action"].push("manger");
-
-
 /*
 Fait afficher tous les marqueurs de l'utilisateur (appel : afficherFlag)
 @input :
   listFlag : liste de tous les marqueurs de l'utilisateur
   */
   function afficherFlags(listFlag){
+    console.log("Affichage des flags !");
     console.log("EXEC");
     let listAction = listFlag[annee];
+    console.log(listAction);
+    console.log("annee = "+annee);
     let first = true;
     let compteur = 0, date;
-    let ecart = 8;
+    let ecart = 8.5;
     for(month of listMonth){
       if(listAction[month]["date"].length == 0){
         compteur ++;
@@ -338,7 +334,7 @@ Fait afficher tous les marqueurs de l'utilisateur (appel : afficherFlag)
         console.log("month : "+month);
         date = new Date(listAction[month]["date"]);
         console.log("compteur : "+compteur);
-        if(first){afficherFlag(date, 7.69+compteur*ecart, month); first = false;}
+        if(first){afficherFlag(date, 9+compteur*ecart, month); first = false;}
         else{afficherFlag(date, compteur*ecart, month);}
         compteur = 0;
       }
@@ -391,8 +387,6 @@ $("#flags").on("click", ".flag", function(event){
     article.find("li:last").text(datestr+" : "+action);
   }
 });
-
-afficherFlags(listFlag);
 
 // ############################################### //
 // ########### Gestion du formulaire ############# //
